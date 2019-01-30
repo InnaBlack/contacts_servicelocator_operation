@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:contacts/contacts.xcodeproj">
+      location = "group:/Users/nikolaygladkovskiy/Gits/skblist/contacts/App.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:contacts/Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
