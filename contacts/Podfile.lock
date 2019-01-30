@@ -1,0 +1,26 @@
+PODS:
+  - PureLayout (3.1.4)
+  - Realm (3.11.1):
+    - Realm/Headers (= 3.11.1)
+  - Realm/Headers (3.11.1)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - PureLayout
+  - Realm
+  - SVProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PureLayout
+    - Realm
+    - SVProgressHUD
+
+SPEC CHECKSUMS:
+  PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
+  Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: e440f4eb32e2473f25e55ea6cb830c7537135472
+
+COCOAPODS: 1.5.3
