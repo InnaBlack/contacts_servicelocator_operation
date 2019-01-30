@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B23AD43A22018228007EA3FE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD43922018228007EA3FE /* NetworkService.swift */; };
+		B23AD43F22018C06007EA3FE /* LocatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD43E22018C06007EA3FE /* LocatorService.swift */; };
+		B23AD44122019210007EA3FE /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD44022019210007EA3FE /* DataBaseService.swift */; };
 		B2F7CBF122003B0F00D6C868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */; };
 		B2F7CBF322003B0F00D6C868 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7CBF222003B0F00D6C868 /* ViewController.swift */; };
 		B2F7CBF622003B0F00D6C868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F7CBF422003B0F00D6C868 /* Main.storyboard */; };
@@ -18,6 +21,9 @@
 /* Begin PBXFileReference section */
 		39E056B619FD0978EE0605FF /* Pods-contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.release.xcconfig"; path = "Pods/Target Support Files/Pods-contacts/Pods-contacts.release.xcconfig"; sourceTree = "<group>"; };
 		4BAA2887769863140A4A9F35 /* Pods_contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B23AD43922018228007EA3FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B23AD43E22018C06007EA3FE /* LocatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocatorService.swift; sourceTree = "<group>"; };
+		B23AD44022019210007EA3FE /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
 		B2F7CBED22003B0F00D6C868 /* contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2F7CBF222003B0F00D6C868 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +63,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B23AD43B2201822F007EA3FE /* Back */ = {
+			isa = PBXGroup;
+			children = (
+				B23AD43922018228007EA3FE /* NetworkService.swift */,
+				B23AD44022019210007EA3FE /* DataBaseService.swift */,
+				B23AD43E22018C06007EA3FE /* LocatorService.swift */,
+			);
+			path = Back;
+			sourceTree = "<group>";
+		};
+		B23AD43C22018248007EA3FE /* Front */ = {
+			isa = PBXGroup;
+			children = (
+				B2F7CBF222003B0F00D6C868 /* ViewController.swift */,
+				B2F7CBF422003B0F00D6C868 /* Main.storyboard */,
+			);
+			path = Front;
+			sourceTree = "<group>";
+		};
+		B23AD43D22018259007EA3FE /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				B2F7CBF722003B1200D6C868 /* Assets.xcassets */,
+				B2F7CBF922003B1200D6C868 /* LaunchScreen.storyboard */,
+				B2F7CBFC22003B1200D6C868 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		B2F7CBE422003B0F00D6C868 = {
 			isa = PBXGroup;
 			children = (
@@ -79,11 +114,9 @@
 			isa = PBXGroup;
 			children = (
 				B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */,
-				B2F7CBF222003B0F00D6C868 /* ViewController.swift */,
-				B2F7CBF422003B0F00D6C868 /* Main.storyboard */,
-				B2F7CBF722003B1200D6C868 /* Assets.xcassets */,
-				B2F7CBF922003B1200D6C868 /* LaunchScreen.storyboard */,
-				B2F7CBFC22003B1200D6C868 /* Info.plist */,
+				B23AD43B2201822F007EA3FE /* Back */,
+				B23AD43C22018248007EA3FE /* Front */,
+				B23AD43D22018259007EA3FE /* Support */,
 			);
 			path = contacts;
 			sourceTree = "<group>";
@@ -212,7 +245,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B23AD43F22018C06007EA3FE /* LocatorService.swift in Sources */,
 				B2F7CBF322003B0F00D6C868 /* ViewController.swift in Sources */,
+				B23AD43A22018228007EA3FE /* NetworkService.swift in Sources */,
+				B23AD44122019210007EA3FE /* DataBaseService.swift in Sources */,
 				B2F7CBF122003B0F00D6C868 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,7 +398,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CNFAR2GRNS;
-				INFOPLIST_FILE = contacts/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/contacts/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,7 +417,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CNFAR2GRNS;
-				INFOPLIST_FILE = contacts/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/contacts/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
