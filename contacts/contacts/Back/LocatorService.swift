@@ -15,6 +15,11 @@ class LocatorService
     var networkService: NetworkService!
     var dataBaseService: DataBaseService!
     
+    init()
+    {
+        initEarlyServices()
+    }
+
     func initEarlyServices()
     {
         makeNetworkService()
