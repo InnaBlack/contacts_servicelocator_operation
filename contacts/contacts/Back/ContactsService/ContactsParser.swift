@@ -33,7 +33,7 @@ class ContactsParser
     {
         guard let identifier = object["id"] as? String else {return nil}
         guard let name = object["name"] as? String else {return nil}
-        guard let height = object["height"] as? Float else {return nil}
+        guard let height = object["height"] as? Double else {return nil}
         guard let biography = object["biography"] as? String else {return nil}
         guard let temperament = object["temperament"] as? String else {return nil}
         guard let educationPeriod = object["educationPeriod"] as? [String: String] else {return nil}

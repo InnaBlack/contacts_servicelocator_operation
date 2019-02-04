@@ -12,7 +12,7 @@ import Realm
 typealias simpleHandler = () -> Void
 
 
-let syncInterval: TimeInterval = 60 // in seconds
+let syncInterval: TimeInterval = 300 // in seconds
 
 
 class SyncService
@@ -57,7 +57,7 @@ private extension SyncService
 {
     func start()
     {
-        
+        invalidatePreviousTimerAndSendSyncAfterDelay()
     }
     
     func invalidatePreviousTimerAndSendSyncAfterDelay()
@@ -71,6 +71,9 @@ private extension SyncService
                 
                 self?.sync(with: nil)
             })
+        
+        RunLoop.main.add(syncTimer!, forMode: .default)
+        syncTimer?.fire()
     }
     
     func sync(with completion: simpleHandler?)
@@ -79,12 +82,11 @@ private extension SyncService
         
         let syncQueue = OperationQueue.init()
         
-        var waitResult: DispatchTimeoutResult = .timedOut
+//        var waitResult: DispatchTimeoutResult = .timedOut
         
         let requestOperation = BlockOperation
-        {[weak self] in
-            
-            guard let resourceNames = self?.resourceNames else {return}
+        {
+            let resourceNames = self.resourceNames
             
             let contactsParser = ContactsParser()
             
@@ -94,33 +96,36 @@ private extension SyncService
             {
                 requestsGroup.enter()
                 
-                guard let requestURL = self?.makeRequestUrl(for: resource) else {break}
+                guard let requestURL = self.makeRequestUrl(for: resource) else {break}
                 
-                self?.networkService.loadData(from: requestURL, completion:
+                self.networkService.loadData(from: requestURL, completion:
                     {[weak self] (resultData, errorCode) in
                         
                         guard let data = resultData else {return} // Network Error
                         
                         guard let objectsList = self?.objectsList(from: data) else {return} // Serialization Error
                         
-                        contacts.append(contentsOf: contactsParser.contacts(from: objectsList))
+                        let parsedContacts = contactsParser.contacts(from: objectsList)
+                        
+                        contacts.append(contentsOf: parsedContacts)
                         
                         requestsGroup.leave()
                     })
             }
             
-            waitResult = requestsGroup.wait(timeout: .now() + syncInterval/2)
+            requestsGroup.wait()
+//            waitResult = requestsGroup.wait(timeout: .now() + syncInterval/2)
         }
         
         let responseOperation = BlockOperation
         {[weak self] in
             
-            if waitResult == .success
-            {
+//            if waitResult == .success
+//            {
                 self?.lastSyncDate = Date()
                 
-                self?.contactsService
-            }
+                self?.contactsService.update(contacts: contacts)
+//            }
             
             if let syncCompletion = completion
             {

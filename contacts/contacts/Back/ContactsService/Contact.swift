@@ -55,14 +55,14 @@ class Contact
 {
     let identifier: String
     let name: String
-    let height: Float
+    let height: Double
     let biography: String
     let temperament: Temperament
     let educationPeriod: Period
     
     init(identifier: String,
          name: String,
-         height: Float,
+         height: Double,
          biography: String,
          temperament: Temperament,
          educationPeriod: Period)
