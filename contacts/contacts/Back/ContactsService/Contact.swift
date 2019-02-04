@@ -32,7 +32,7 @@ import Foundation
 
  */
 
-enum Temperament
+enum Temperament: String
 {
     case melancholic
     case phlegmatic

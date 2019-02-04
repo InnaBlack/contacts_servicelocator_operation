@@ -12,6 +12,9 @@ import Realm
 typealias simpleHandler = () -> Void
 
 
+let syncInterval: TimeInterval = 60 // in seconds
+
+
 class SyncService
 {
     private let serverPath = "https://github.com/SkbkonturMobile/mobile-test-ios/blob/master/json/"
@@ -23,18 +26,19 @@ class SyncService
     
     private let networkService: NetworkService
     private let databaseService: DataBaseService
-    
+    private let contactsService: ContactsService
     private let realm: RLMRealm
     
-    private let syncInterval: TimeInterval = 60 // in seconds
     private var lastSyncDate = Date.distantPast
     private var syncTimer: Timer?
     
     init(networkService: NetworkService,
-         databaseService: DataBaseService)
+         databaseService: DataBaseService,
+         contactsService: ContactsService)
     {
         self.networkService = networkService
         self.databaseService = databaseService
+        self.contactsService = contactsService
         
         do
         {
@@ -72,34 +76,63 @@ private extension SyncService
     func sync(with completion: simpleHandler?)
     {
         var contacts = [Contact]()
-        let contactsParser = ContactsParser()
-        let operationsGroup = DispatchGroup()
         
-        for resource in resourceNames
-        {
-            operationsGroup.enter()
+        let syncQueue = OperationQueue.init()
+        
+        var waitResult: DispatchTimeoutResult = .timedOut
+        
+        let requestOperation = BlockOperation
+        {[weak self] in
             
-            guard let requestURL = makeRequestUrl(for: resource) else {break}
+            guard let resourceNames = self?.resourceNames else {return}
             
-            let requestOperation = makeRequestOperation(for: requestURL)
+            let contactsParser = ContactsParser()
             
-            requestOperation.completionBlock = {operationsGroup.leave()}
+            let requestsGroup = DispatchGroup()
+            
+            for resource in resourceNames
+            {
+                requestsGroup.enter()
+                
+                guard let requestURL = self?.makeRequestUrl(for: resource) else {break}
+                
+                self?.networkService.loadData(from: requestURL, completion:
+                    {[weak self] (resultData, errorCode) in
+                        
+                        guard let data = resultData else {return} // Network Error
+                        
+                        guard let objectsList = self?.objectsList(from: data) else {return} // Serialization Error
+                        
+                        contacts.append(contentsOf: contactsParser.contacts(from: objectsList))
+                        
+                        requestsGroup.leave()
+                    })
+            }
+            
+            waitResult = requestsGroup.wait(timeout: .now() + syncInterval/2)
         }
         
-        
-    }
-    
-    func makeRequestOperation(for requestURL: URL) -> Operation
-    {
-        return networkService.buildOperationForLoadData(from: requestURL)
-            {[weak self] (resultData, errorCode) in
+        let responseOperation = BlockOperation
+        {[weak self] in
+            
+            if waitResult == .success
+            {
+                self?.lastSyncDate = Date()
                 
-                guard let data = resultData else {return} // Network Error
-                
-                guard let objectsList = self?.objectsList(from: data) else {return} // Serialization Error
-                
-                contacts.append(contentsOf: contactsParser.contacts(from: objectsList))
+                self?.contactsService
             }
+            
+            if let syncCompletion = completion
+            {
+                syncCompletion()
+            }
+        }
+        
+        responseOperation.addDependency(requestOperation)
+        
+        syncQueue.addOperation(requestOperation)
+        syncQueue.addOperation(responseOperation)
+        
     }
     
     func makeRequestUrl(for resource: String) -> URL?

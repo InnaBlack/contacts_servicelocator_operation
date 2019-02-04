@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class ContactsService
+{
+    private var contactsList = [Contact]()
+    
+    var contacts: [Contact] {return contactsList}
+
+}
