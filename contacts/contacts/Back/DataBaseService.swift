@@ -17,6 +17,12 @@ class DataBaseService
         configuration.schemaVersion = 1
         configuration.objectClasses = []
         configuration.fileURL = contactsFileUrl()
+        configuration.shouldCompactOnLaunch =
+            {totalBytes, usedBytes in
+                
+            let mbSize = 20 * 1024 * 1024
+            return (totalBytes > mbSize) && (Double(usedBytes) / Double(totalBytes)) < 1/2
+        }
         
         return configuration
     }

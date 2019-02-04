@@ -15,6 +15,8 @@ class LocatorService
     var networkService: NetworkService!
     var dataBaseService: DataBaseService!
     
+    lazy var syncService: SyncService = makeSyncService()
+    
     init()
     {
         initEarlyServices()
@@ -37,5 +39,11 @@ private extension LocatorService
     func makeDataBaseService()
     {
        dataBaseService = DataBaseService()
+    }
+    
+    func makeSyncService() -> SyncService
+    {
+        return SyncService.init(networkService: networkService,
+                                databaseService: dataBaseService)
     }
 }
