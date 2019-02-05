@@ -14,7 +14,7 @@ class ContactsService
     
     var contacts: [Contact] {return contactsList}
 
-    func update(contacts: [Contact])
+    func addOrUpdate(contacts: [Contact])
     {
         print(contacts)
     }

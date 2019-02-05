@@ -4,7 +4,4 @@
    <FileRef
       location = "group:/Users/nikolaygladkovskiy/Gits/skblist/contacts/App.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:contacts/Pods/Pods.xcodeproj">
-   </FileRef>
 </Workspace>

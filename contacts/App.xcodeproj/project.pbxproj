@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A847889518D298FCF39DD7E /* Pods_contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0B900292E1D4CB8227866D /* Pods_contacts.framework */; };
 		B23AD43A22018228007EA3FE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD43922018228007EA3FE /* NetworkService.swift */; };
 		B23AD43F22018C06007EA3FE /* LocatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD43E22018C06007EA3FE /* LocatorService.swift */; };
 		B23AD44122019210007EA3FE /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD44022019210007EA3FE /* DataBaseService.swift */; };
@@ -15,17 +16,16 @@
 		B23D3F212208B7EC00043985 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F202208B7EC00043985 /* Contact.swift */; };
 		B23D3F232208B80700043985 /* RealmContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F222208B80700043985 /* RealmContact.swift */; };
 		B23D3F252208C10900043985 /* ContactsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F242208C10900043985 /* ContactsParser.swift */; };
+		B23D3F412209AF9800043985 /* ContactsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F402209AF9800043985 /* ContactsCache.swift */; };
 		B2F7CBF122003B0F00D6C868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */; };
 		B2F7CBF322003B0F00D6C868 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7CBF222003B0F00D6C868 /* ViewController.swift */; };
 		B2F7CBF622003B0F00D6C868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F7CBF422003B0F00D6C868 /* Main.storyboard */; };
 		B2F7CBF822003B1200D6C868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F7CBF722003B1200D6C868 /* Assets.xcassets */; };
 		B2F7CBFB22003B1200D6C868 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F7CBF922003B1200D6C868 /* LaunchScreen.storyboard */; };
-		F42E8F0FC8109E3AECE1EB4A /* Pods_contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAA2887769863140A4A9F35 /* Pods_contacts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		39E056B619FD0978EE0605FF /* Pods-contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.release.xcconfig"; path = "Pods/Target Support Files/Pods-contacts/Pods-contacts.release.xcconfig"; sourceTree = "<group>"; };
-		4BAA2887769863140A4A9F35 /* Pods_contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B63CC402E0C3EE90F97EBF2 /* Pods-contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contacts/Pods-contacts.debug.xcconfig"; sourceTree = "<group>"; };
 		B23AD43922018228007EA3FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B23AD43E22018C06007EA3FE /* LocatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocatorService.swift; sourceTree = "<group>"; };
 		B23AD44022019210007EA3FE /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
@@ -34,6 +34,7 @@
 		B23D3F202208B7EC00043985 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		B23D3F222208B80700043985 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
 		B23D3F242208C10900043985 /* ContactsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsParser.swift; sourceTree = "<group>"; };
+		B23D3F402209AF9800043985 /* ContactsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCache.swift; sourceTree = "<group>"; };
 		B2F7CBED22003B0F00D6C868 /* contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2F7CBF222003B0F00D6C868 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +42,8 @@
 		B2F7CBF722003B1200D6C868 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2F7CBFA22003B1200D6C868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2F7CBFC22003B1200D6C868 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E40554A0D992CA17D5E25FA0 /* Pods-contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contacts/Pods-contacts.debug.xcconfig"; sourceTree = "<group>"; };
+		BC6640423888432C637230E0 /* Pods-contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.release.xcconfig"; path = "Pods/Target Support Files/Pods-contacts/Pods-contacts.release.xcconfig"; sourceTree = "<group>"; };
+		DD0B900292E1D4CB8227866D /* Pods_contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F42E8F0FC8109E3AECE1EB4A /* Pods_contacts.framework in Frameworks */,
+				0A847889518D298FCF39DD7E /* Pods_contacts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,16 +61,16 @@
 		35D8A4C1653C424CD472472D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4BAA2887769863140A4A9F35 /* Pods_contacts.framework */,
+				DD0B900292E1D4CB8227866D /* Pods_contacts.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6EE2CA186553FA20ECD2B4A5 /* Pods */ = {
+		3D176263B0823527B22AE295 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E40554A0D992CA17D5E25FA0 /* Pods-contacts.debug.xcconfig */,
-				39E056B619FD0978EE0605FF /* Pods-contacts.release.xcconfig */,
+				0B63CC402E0C3EE90F97EBF2 /* Pods-contacts.debug.xcconfig */,
+				BC6640423888432C637230E0 /* Pods-contacts.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -107,12 +109,37 @@
 		B23D3F1F2208B7D700043985 /* ContactsService */ = {
 			isa = PBXGroup;
 			children = (
-				B23D3F1D2208B7D200043985 /* ContactsService.swift */,
-				B23D3F202208B7EC00043985 /* Contact.swift */,
-				B23D3F222208B80700043985 /* RealmContact.swift */,
-				B23D3F242208C10900043985 /* ContactsParser.swift */,
+				B23D3F442209AFBD00043985 /* Contacts */,
+				B23D3F422209AFA900043985 /* Cache */,
+				B23D3F432209AFB300043985 /* Parser */,
 			);
 			path = ContactsService;
+			sourceTree = "<group>";
+		};
+		B23D3F422209AFA900043985 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F402209AF9800043985 /* ContactsCache.swift */,
+				B23D3F222208B80700043985 /* RealmContact.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		B23D3F432209AFB300043985 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F242208C10900043985 /* ContactsParser.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		B23D3F442209AFBD00043985 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F1D2208B7D200043985 /* ContactsService.swift */,
+				B23D3F202208B7EC00043985 /* Contact.swift */,
+			);
+			path = Contacts;
 			sourceTree = "<group>";
 		};
 		B2F7CBE422003B0F00D6C868 = {
@@ -120,8 +147,8 @@
 			children = (
 				B2F7CBEF22003B0F00D6C868 /* contacts */,
 				B2F7CBEE22003B0F00D6C868 /* Products */,
-				6EE2CA186553FA20ECD2B4A5 /* Pods */,
 				35D8A4C1653C424CD472472D /* Frameworks */,
+				3D176263B0823527B22AE295 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,6 +273,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-contacts/Pods-contacts-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -254,6 +282,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +304,7 @@
 				B23D3F1C2208B61700043985 /* SyncService.swift in Sources */,
 				B23D3F252208C10900043985 /* ContactsParser.swift in Sources */,
 				B23D3F212208B7EC00043985 /* Contact.swift in Sources */,
+				B23D3F412209AF9800043985 /* ContactsCache.swift in Sources */,
 				B23AD43A22018228007EA3FE /* NetworkService.swift in Sources */,
 				B23AD44122019210007EA3FE /* DataBaseService.swift in Sources */,
 				B2F7CBF122003B0F00D6C868 /* AppDelegate.swift in Sources */,
@@ -421,7 +451,7 @@
 		};
 		B2F7CC0022003B1200D6C868 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E40554A0D992CA17D5E25FA0 /* Pods-contacts.debug.xcconfig */;
+			baseConfigurationReference = 0B63CC402E0C3EE90F97EBF2 /* Pods-contacts.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -440,7 +470,7 @@
 		};
 		B2F7CC0122003B1200D6C868 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39E056B619FD0978EE0605FF /* Pods-contacts.release.xcconfig */;
+			baseConfigurationReference = BC6640423888432C637230E0 /* Pods-contacts.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

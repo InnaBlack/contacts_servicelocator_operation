@@ -62,10 +62,3 @@ func makeDateFormatter() -> DateFormatter
     formatter.timeZone = TimeZone(secondsFromGMT: 0)
     return formatter
 }
-
-//id (string) — ID контакта
-//name (string) — Имя человека
-//height (float) — Рост человека
-//biography (string) — Биография человека
-//temperament (enum) — Темперамент человека (melancholic, phlegmatic, sanguine, choleric)
-//educationPeriod (object) — Период прохождения учебы. Состоит из дат start и end.
