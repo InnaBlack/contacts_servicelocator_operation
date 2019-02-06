@@ -63,7 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B63CC402E0C3EE90F97EBF2 /* Pods-contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contacts/Pods-contacts.debug.xcconfig"; sourceTree = "<group>"; };
+		77568970FD301DA008F7DC3F /* Pods-contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-contacts/Pods-contacts.debug.xcconfig"; sourceTree = "<group>"; };
+		813170841D9E8BC9A55F7D97 /* Pods-contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.release.xcconfig"; path = "../Pods/Target Support Files/Pods-contacts/Pods-contacts.release.xcconfig"; sourceTree = "<group>"; };
 		B23AD43922018228007EA3FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B23AD43E22018C06007EA3FE /* LocatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocatorService.swift; sourceTree = "<group>"; };
 		B23AD44022019210007EA3FE /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		B2F7CBF722003B1200D6C868 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2F7CBFA22003B1200D6C868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2F7CBFC22003B1200D6C868 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC6640423888432C637230E0 /* Pods-contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.release.xcconfig"; path = "Pods/Target Support Files/Pods-contacts/Pods-contacts.release.xcconfig"; sourceTree = "<group>"; };
 		DD0B900292E1D4CB8227866D /* Pods_contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,21 +97,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18ADD5DCE4DE3673553D7580 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				77568970FD301DA008F7DC3F /* Pods-contacts.debug.xcconfig */,
+				813170841D9E8BC9A55F7D97 /* Pods-contacts.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		35D8A4C1653C424CD472472D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				DD0B900292E1D4CB8227866D /* Pods_contacts.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3D176263B0823527B22AE295 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0B63CC402E0C3EE90F97EBF2 /* Pods-contacts.debug.xcconfig */,
-				BC6640423888432C637230E0 /* Pods-contacts.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		B23AD43B2201822F007EA3FE /* Back */ = {
@@ -200,7 +200,7 @@
 				B2F7CBEF22003B0F00D6C868 /* contacts */,
 				B2F7CBEE22003B0F00D6C868 /* Products */,
 				35D8A4C1653C424CD472472D /* Frameworks */,
-				3D176263B0823527B22AE295 /* Pods */,
+				18ADD5DCE4DE3673553D7580 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -547,7 +547,7 @@
 		};
 		B2F7CC0022003B1200D6C868 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B63CC402E0C3EE90F97EBF2 /* Pods-contacts.debug.xcconfig */;
+			baseConfigurationReference = 77568970FD301DA008F7DC3F /* Pods-contacts.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -566,7 +566,7 @@
 		};
 		B2F7CC0122003B1200D6C868 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC6640423888432C637230E0 /* Pods-contacts.release.xcconfig */;
+			baseConfigurationReference = 813170841D9E8BC9A55F7D97 /* Pods-contacts.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
