@@ -109,17 +109,19 @@ private extension SyncService
         
         let responseOperation = BlockOperation
         {[weak self] in
-            
-            if waitResult == .success
-            {
-                self?.lastSyncDate = Date()
-                
-                self?.contactsService.addOrUpdate(contacts: contacts)
-            }
-            
-            if let syncCompletion = completion
-            {
-                syncCompletion()
+            DispatchQueue.main.async
+                {
+                    if waitResult == .success
+                    {
+                        self?.lastSyncDate = Date()
+                        
+                        self?.contactsService.addOrUpdate(contacts: contacts)
+                    }
+                    
+                    if let syncCompletion = completion
+                    {
+                        syncCompletion()
+                    }
             }
         }
         

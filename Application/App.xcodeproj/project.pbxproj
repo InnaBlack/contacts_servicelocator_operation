@@ -24,6 +24,44 @@
 		B2F7CBFB22003B1200D6C868 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F7CBF922003B1200D6C868 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B23D3F4D220ACD4800043985 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B23D3F45220ACD4700043985 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A28116696A567362A5FE344AA069C01;
+			remoteInfo = "Pods-contacts";
+		};
+		B23D3F4F220ACD4800043985 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B23D3F45220ACD4700043985 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A78BC566C1B93D75389D312D5693CA0F;
+			remoteInfo = PureLayout;
+		};
+		B23D3F51220ACD4800043985 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B23D3F45220ACD4700043985 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 944179FA5FC0FBC00A6439633C15BA3A;
+			remoteInfo = Realm;
+		};
+		B23D3F53220ACD4800043985 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B23D3F45220ACD4700043985 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6C5A34C9D0269B3D70663424001F93E2;
+			remoteInfo = RealmSwift;
+		};
+		B23D3F55220ACD4800043985 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B23D3F45220ACD4700043985 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 239570529993F91D4D563386267C375F;
+			remoteInfo = SVProgressHUD;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0B63CC402E0C3EE90F97EBF2 /* Pods-contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-contacts/Pods-contacts.debug.xcconfig"; sourceTree = "<group>"; };
 		B23AD43922018228007EA3FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -35,6 +73,7 @@
 		B23D3F222208B80700043985 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
 		B23D3F242208C10900043985 /* ContactsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsParser.swift; sourceTree = "<group>"; };
 		B23D3F402209AF9800043985 /* ContactsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCache.swift; sourceTree = "<group>"; };
+		B23D3F45220ACD4700043985 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = ../Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		B2F7CBED22003B0F00D6C868 /* contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2F7CBF222003B0F00D6C868 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,9 +181,22 @@
 			path = Contacts;
 			sourceTree = "<group>";
 		};
+		B23D3F46220ACD4700043985 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F4E220ACD4800043985 /* Pods_contacts.framework */,
+				B23D3F50220ACD4800043985 /* PureLayout.framework */,
+				B23D3F52220ACD4800043985 /* Realm.framework */,
+				B23D3F54220ACD4800043985 /* RealmSwift.framework */,
+				B23D3F56220ACD4800043985 /* SVProgressHUD.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B2F7CBE422003B0F00D6C868 = {
 			isa = PBXGroup;
 			children = (
+				B23D3F45220ACD4700043985 /* Pods.xcodeproj */,
 				B2F7CBEF22003B0F00D6C868 /* contacts */,
 				B2F7CBEE22003B0F00D6C868 /* Products */,
 				35D8A4C1653C424CD472472D /* Frameworks */,
@@ -219,12 +271,56 @@
 			mainGroup = B2F7CBE422003B0F00D6C868;
 			productRefGroup = B2F7CBEE22003B0F00D6C868 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B23D3F46220ACD4700043985 /* Products */;
+					ProjectRef = B23D3F45220ACD4700043985 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B2F7CBEC22003B0F00D6C868 /* contacts */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B23D3F4E220ACD4800043985 /* Pods_contacts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_contacts.framework;
+			remoteRef = B23D3F4D220ACD4800043985 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B23D3F50220ACD4800043985 /* PureLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PureLayout.framework;
+			remoteRef = B23D3F4F220ACD4800043985 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B23D3F52220ACD4800043985 /* Realm.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Realm.framework;
+			remoteRef = B23D3F51220ACD4800043985 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B23D3F54220ACD4800043985 /* RealmSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RealmSwift.framework;
+			remoteRef = B23D3F53220ACD4800043985 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B23D3F56220ACD4800043985 /* SVProgressHUD.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SVProgressHUD.framework;
+			remoteRef = B23D3F55220ACD4800043985 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B2F7CBEB22003B0F00D6C868 /* Resources */ = {
@@ -270,7 +366,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-contacts/Pods-contacts-frameworks.sh",
+				"${SRCROOT}/../Pods/Target Support Files/Pods-contacts/Pods-contacts-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -287,7 +383,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-contacts/Pods-contacts-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-contacts/Pods-contacts-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
