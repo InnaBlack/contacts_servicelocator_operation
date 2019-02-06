@@ -31,7 +31,7 @@ private extension ContactsCache
         
         for realmContact in realmContacts
         {
-            result.append(realmContacts.contact)
+            result.append(realmContact.contact())
         }
         
         return result

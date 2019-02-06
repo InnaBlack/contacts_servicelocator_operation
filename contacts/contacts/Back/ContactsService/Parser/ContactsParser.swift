@@ -11,7 +11,6 @@ import Foundation
 
 class ContactsParser
 {
-    lazy var dateFormatter: DateFormatter = makeDateFormatter()
     
     func contacts(from objectsList: [Any]) -> [Contact]
     {
@@ -40,25 +39,14 @@ class ContactsParser
         guard let educationStart = educationPeriod["start"] else {return nil}
         guard let educationEnd = educationPeriod["end"] else {return nil}
         
-        guard let startDate = dateFormatter.date(from: educationStart) else {return nil}
-        guard let endDate = dateFormatter.date(from: educationEnd) else {return nil}
-        
-        let educationDates = Period.init(start: startDate, end: endDate)
+        let educationDates
+            = Period.init(startDateString: educationStart, endDateString: educationEnd)
         
         return Contact.init(identifier: identifier,
                             name: name,
                             height: height,
                             biography: biography,
-                            temperament: Temperament.init(rawValue: temperament) ?? .choleric,
+                            temperament: Temperament.init(from: temperament),
                             educationPeriod: educationDates)
     }
-}
-
-func makeDateFormatter() -> DateFormatter
-{
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-    formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    return formatter
 }

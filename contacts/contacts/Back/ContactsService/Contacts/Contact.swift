@@ -34,20 +34,50 @@ import Foundation
 
 enum Temperament: String
 {
+    case undefined
     case melancholic
     case phlegmatic
     case sanguine
     case choleric
+    
+    init(from rawValue: String)
+    {
+        self = Temperament(rawValue: rawValue) ?? .undefined
+    }
 }
 
 struct Period
 {
-    let start: Date
-    let end: Date
+    var start: Date!
+    var end: Date!
     
     var duration: TimeInterval
     {
         return start.timeIntervalSince(end)
+    }
+    
+    var stringValues: (start: String, end: String)
+    {
+        let dateFormatter = makeDateFormatter()
+        
+        return (dateFormatter.string(from: start),
+                dateFormatter.string(from: end))
+    }
+    
+    init(startDateString: String, endDateString: String)
+    {
+        let dateFormatter = makeDateFormatter()
+        start = dateFormatter.date(from: startDateString) ?? .distantPast
+        end = dateFormatter.date(from: endDateString) ?? .distantFuture
+    }
+    
+    private func makeDateFormatter() -> DateFormatter
+    {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
     }
 }
 
