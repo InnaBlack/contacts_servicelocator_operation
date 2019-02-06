@@ -10,12 +10,22 @@ import Foundation
 
 class ContactsService
 {
-    private var contactsList = [Contact]()
+    private let cache : ContactsCache
     
-    var contacts: [Contact] {return contactsList}
+    var contacts: [Contact]
+    {
+        return cache.contacts
+    }
 
+    init(databaseService: DataBaseService)
+    {
+        cache = ContactsCache.init(databaseService: databaseService)
+    }
+    
     func addOrUpdate(contacts: [Contact])
     {
-        print(contacts)
+        cache.addOrUpdate(contacts: contacts)
+        
+        // ContactServiceDidUpdateContacts
     }
 }

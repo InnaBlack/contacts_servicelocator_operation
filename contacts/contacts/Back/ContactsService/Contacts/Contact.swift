@@ -83,12 +83,12 @@ struct Period
 
 class Contact
 {
-    let identifier: String
-    let name: String
-    let height: Double
-    let biography: String
-    let temperament: Temperament
-    let educationPeriod: Period
+    var identifier: String
+    var name: String
+    var height: Double
+    var biography: String
+    var temperament: Temperament
+    var educationPeriod: Period
     
     init(identifier: String,
          name: String,
@@ -103,5 +103,15 @@ class Contact
         self.biography = biography
         self.temperament = temperament
         self.educationPeriod = educationPeriod
+    }
+    
+    func update(from contact: Contact)
+    {
+        self.identifier = contact.identifier
+        self.name = contact.name
+        self.height = contact.height
+        self.biography = contact.biography
+        self.temperament = contact.temperament
+        self.educationPeriod = contact.educationPeriod
     }
 }

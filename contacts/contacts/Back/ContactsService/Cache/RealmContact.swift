@@ -61,4 +61,15 @@ class RealmContact: RealmSwift.Object
                             educationPeriod: Period.init(startDateString: educationStart,
                                                          endDateString: educationEnd))
     }
+    
+    func update(from contact: Contact)
+    {
+        self.identifier = contact.identifier
+        self.name = contact.name
+        self.height = contact.height
+        self.biography = contact.biography
+        self.temperament = contact.temperament.rawValue
+        self.educationStart = contact.educationPeriod.stringValues.start
+        self.educationEnd = contact.educationPeriod.stringValues.end
+    }
 }

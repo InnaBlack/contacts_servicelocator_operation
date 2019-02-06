@@ -44,7 +44,7 @@ private extension LocatorService
     
     func makeContactservice() -> ContactsService
     {
-        return ContactsService.init()
+        return ContactsService.init(databaseService: self.dataBaseService)
     }
     
     func makeSyncService() -> SyncService

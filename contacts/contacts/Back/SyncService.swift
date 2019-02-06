@@ -27,7 +27,6 @@ class SyncService
     private let networkService: NetworkService
     private let databaseService: DataBaseService
     private let contactsService: ContactsService
-    private let realm: Realm
     
     private var lastSyncDate = Date.distantPast
     private var syncTimer: Timer?
@@ -39,8 +38,6 @@ class SyncService
         self.networkService = networkService
         self.databaseService = databaseService
         self.contactsService = contactsService
-        
-        realm = databaseService.contactRealm
         
         start()
     }

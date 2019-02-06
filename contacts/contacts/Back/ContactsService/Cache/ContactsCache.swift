@@ -40,8 +40,31 @@ private extension ContactsCache
 
 extension ContactsCache
 {
-    func save(contacts: [Contact])
+    func addOrUpdate(contacts: [Contact])
     {
+        for contact in contacts
+        {
+            if let haveContact = self.contacts.first(where: {$0.identifier == contact.identifier})
+            {
+                haveContact.update(from: contact)
+            }
+            else
+            {
+                self.contacts.append(contact)
+            }
+            
+            realm.beginWrite()
+            if let haveRealmContact = realm.object(ofType: RealmContact.self, forPrimaryKey: contact.identifier)
+            {
+                haveRealmContact.update(from: contact)
+            }
+            else
+            {
+                realm.add(RealmContact.init(contact: contact))
+            }
+            try! realm.commitWrite()
+        }
+        
         
     }
 }
