@@ -12,7 +12,7 @@ import RealmSwift
 typealias simpleHandler = () -> Void
 
 
-let syncInterval: TimeInterval = 300 // in seconds
+let syncInterval: TimeInterval = 60 // in seconds
 
 
 class SyncService

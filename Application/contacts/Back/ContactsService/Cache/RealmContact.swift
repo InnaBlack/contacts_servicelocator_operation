@@ -13,6 +13,7 @@ class RealmContact: RealmSwift.Object
 {
     @objc dynamic var identifier: String = ""
     @objc dynamic var name: String = ""
+    @objc dynamic var phoneNumber: String = ""
     @objc dynamic var height: Double = 0.0
     @objc dynamic var biography: String = ""
     @objc dynamic var temperament: String = ""
@@ -21,6 +22,7 @@ class RealmContact: RealmSwift.Object
     
     convenience init(identifier: String,
          name: String,
+         phoneNumber: String,
          height: Double,
          biography: String,
          temperament: String,
@@ -31,6 +33,7 @@ class RealmContact: RealmSwift.Object
         
         self.identifier = identifier
         self.name = name
+        self.phoneNumber = phoneNumber
         self.height = height
         self.biography = biography
         self.temperament = temperament
@@ -44,6 +47,7 @@ class RealmContact: RealmSwift.Object
         
         self.identifier = contact.identifier
         self.name = contact.name
+        self.phoneNumber = contact.phoneNumber
         self.height = contact.height
         self.biography = contact.biography
         self.temperament = contact.temperament.rawValue
@@ -55,6 +59,7 @@ class RealmContact: RealmSwift.Object
     {
         return Contact.init(identifier: identifier,
                             name: name,
+                            phoneNumber: phoneNumber,
                             height: height,
                             biography: biography,
                             temperament: Temperament.init(from: temperament),
@@ -64,12 +69,18 @@ class RealmContact: RealmSwift.Object
     
     func update(from contact: Contact)
     {
-        self.identifier = contact.identifier
+        if (self.identifier != contact.identifier) {print("bad update")}
         self.name = contact.name
+        self.phoneNumber = contact.phoneNumber
         self.height = contact.height
         self.biography = contact.biography
         self.temperament = contact.temperament.rawValue
         self.educationStart = contact.educationPeriod.stringValues.start
         self.educationEnd = contact.educationPeriod.stringValues.end
+    }
+    
+    override class func primaryKey() -> String?
+    {
+        return "identifier"
     }
 }

@@ -32,6 +32,7 @@ class ContactsParser
     {
         guard let identifier = object["id"] as? String else {return nil}
         guard let name = object["name"] as? String else {return nil}
+        guard let phoneNumber = object["phone"] as? String else {return nil}
         guard let height = object["height"] as? Double else {return nil}
         guard let biography = object["biography"] as? String else {return nil}
         guard let temperament = object["temperament"] as? String else {return nil}
@@ -44,6 +45,7 @@ class ContactsParser
         
         return Contact.init(identifier: identifier,
                             name: name,
+                            phoneNumber: phoneNumber,
                             height: height,
                             biography: biography,
                             temperament: Temperament.init(from: temperament),

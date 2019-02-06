@@ -8,9 +8,24 @@
 
 import Foundation
 
+
+protocol ContactsServiceInput
+{
+    func addOrUpdate(contacts: [Contact])
+}
+
+
+protocol ContactsServiceOutput
+{
+    func didUpdateContacts()
+}
+
+
 class ContactsService
 {
-    private let cache : ContactsCache
+    var delegate: ContactsServiceOutput?
+    
+    private let cache: ContactsCache
     
     var contacts: [Contact]
     {
@@ -21,11 +36,15 @@ class ContactsService
     {
         cache = ContactsCache.init(databaseService: databaseService)
     }
-    
+}
+
+
+extension ContactsService: ContactsServiceInput
+{
     func addOrUpdate(contacts: [Contact])
     {
         cache.addOrUpdate(contacts: contacts)
         
-        // ContactServiceDidUpdateContacts
+        delegate?.didUpdateContacts()
     }
 }

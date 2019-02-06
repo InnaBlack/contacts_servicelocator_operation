@@ -16,6 +16,8 @@ import Foundation
  
  let name: String — Имя человека
  
+ let phoneNumber: String - Номер телефона
+ 
  let height: Float — Рост человека
  
  let biography: String — Биография человека
@@ -85,6 +87,7 @@ class Contact
 {
     var identifier: String
     var name: String
+    var phoneNumber: String
     var height: Double
     var biography: String
     var temperament: Temperament
@@ -92,6 +95,7 @@ class Contact
     
     init(identifier: String,
          name: String,
+         phoneNumber: String,
          height: Double,
          biography: String,
          temperament: Temperament,
@@ -99,6 +103,7 @@ class Contact
     {
         self.identifier = identifier
         self.name = name
+        self.phoneNumber = phoneNumber
         self.height = height
         self.biography = biography
         self.temperament = temperament
@@ -109,6 +114,7 @@ class Contact
     {
         self.identifier = contact.identifier
         self.name = contact.name
+        self.phoneNumber = contact.phoneNumber
         self.height = contact.height
         self.biography = contact.biography
         self.temperament = contact.temperament
