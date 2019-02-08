@@ -21,4 +21,6 @@ protocol ContactsViewOutput: class
     func viewDidPressOnBackButton()
     
     func viewDidPress(on item: ContactItem)
+    
+    func viewDidStartRefresh()
 }

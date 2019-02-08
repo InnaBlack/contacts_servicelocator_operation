@@ -30,6 +30,11 @@ extension ContactsPresenter: ContactsViewOutput
     {
        
     }
+    
+    func viewDidStartRefresh()
+    {
+        interactor.loadItems()
+    }
 }
 
 

@@ -15,6 +15,7 @@ class ContactsViewController: UIViewController
     
     private var tableView: UITableView!
     private var tableData: TableData!
+    private let refreshControl = UIRefreshControl.init()
     
     override func viewDidLoad()
     {
@@ -60,6 +61,16 @@ private extension ContactsViewController
         {
             tableView.contentInsetAdjustmentBehavior = .never
         }
+        
+        tableView.addSubview(refreshControl)
+        refreshControl.tintColor = .orange
+        refreshControl.attributedTitle = NSAttributedString.init(string: "Let's cook")
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+    }
+    
+    @objc func refreshContent()
+    {
+        output.viewDidStartRefresh()
     }
     
     func configureTableViewInsets()
@@ -139,6 +150,8 @@ extension ContactsViewController: ContactsViewInput
     func configure(with tableData: TableData)
     {
         self.tableData = tableData
+        
+        refreshControl.endRefreshing()
         
         tableView.reloadData()
     }

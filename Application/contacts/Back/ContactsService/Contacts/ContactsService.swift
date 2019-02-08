@@ -29,7 +29,8 @@ class ContactsService
     
     var contacts: [Contact]
     {
-        return cache.contacts
+        return cache.loadContacts()
+//        return cache.contacts
     }
 
     init(databaseService: DataBaseService)

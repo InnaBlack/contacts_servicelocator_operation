@@ -21,7 +21,7 @@ class ContactsCache
     }
 }
 
-private extension ContactsCache
+extension ContactsCache
 {
     func loadContacts() -> [Contact]
     {
@@ -52,17 +52,19 @@ extension ContactsCache
             {
                 self.contacts.append(contact)
             }
-            
-            realm.beginWrite()
-            if let haveRealmContact = realm.object(ofType: RealmContact.self, forPrimaryKey: contact.identifier)
-            {
-                haveRealmContact.update(from: contact)
+
+            realm.writeAsync(obj: RealmContact.self())
+            { (inrealm, realmContacts) in
+                if let haveRealmContact = inrealm.object(ofType: RealmContact.self, forPrimaryKey: contact.identifier)
+                {
+                    haveRealmContact.update(from: contact)
+                }
+                else
+                {
+                    let realmContact = RealmContact.init(contact: contact)
+                    inrealm.add(realmContact)
+                }
             }
-            else
-            {
-                realm.add(RealmContact.init(contact: contact))
-            }
-            try! realm.commitWrite()
         }
         
         
