@@ -12,7 +12,19 @@ import RealmSwift
 typealias simpleHandler = () -> Void
 
 
-let syncInterval: TimeInterval = 60 // in seconds
+let syncInterval: TimeInterval = 300 // in seconds
+
+
+protocol SyncServiceInput
+{
+    func sync(with completion: simpleHandler?)
+}
+
+
+protocol SyncServiceOutput
+{
+
+}
 
 
 class SyncService
@@ -68,6 +80,8 @@ private extension SyncService
     
     func sync(with completion: simpleHandler?)
     {
+        var date = Date()
+        LogService.log(.syncService, level: .time, message: "Start \(date)")
         var contacts = [Contact]()
         
         let syncQueue = OperationQueue.init()
@@ -82,8 +96,13 @@ private extension SyncService
             
             let requestsGroup = DispatchGroup()
             
+            LogService.log(.syncService, level: .time, message: "Start loading resources \(date.timeIntervalSinceNow) s")
+            date = Date()
+            
             for resource in resourceNames
             {
+                
+                
                 requestsGroup.enter()
                 
                 guard let requestURL = self.makeRequestUrl(for: resource) else {break}
@@ -105,18 +124,26 @@ private extension SyncService
             
 //            requestsGroup.wait()
             waitResult = requestsGroup.wait(timeout: .now() + syncInterval/2)
+            
+            LogService.log(.syncService, level: .time, message: "End loading resources \(date.timeIntervalSinceNow) s")
+            date = Date()
         }
         
         let responseOperation = BlockOperation
         {[weak self] in
             DispatchQueue.main.async
                 {
+                    LogService.log(.syncService, level: .time, message: "Start parsing data \(date.timeIntervalSinceNow) s")
+                    date = Date()
                     if waitResult == .success
                     {
                         self?.lastSyncDate = Date()
                         
                         self?.contactsService.addOrUpdate(contacts: contacts)
                     }
+                    
+                    LogService.log(.syncService, level: .time, message: "End parsing data \(date.timeIntervalSinceNow) s")
+                    date = Date()
                     
                     if let syncCompletion = completion
                     {

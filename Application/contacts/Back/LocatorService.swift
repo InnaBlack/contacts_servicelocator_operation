@@ -17,6 +17,7 @@ class LocatorService
     
     lazy var syncService = makeSyncService()
     lazy var contactsService = makeContactservice()
+    lazy var rootWindowService = makeRootWindowService()
     
     init()
     {
@@ -25,32 +26,49 @@ class LocatorService
 
     func initEarlyServices()
     {
-        makeNetworkService()
-        makeDataBaseService()
+        initNetworkService()
+        initDataBaseService()
     }
 }
 
 private extension LocatorService
 {
-    func makeNetworkService()
+    func initNetworkService()
     {
         networkService = NetworkService()
+        LogService.log(.networkService, level: .info, message: "did create")
     }
     
-    func makeDataBaseService()
+    func initDataBaseService()
     {
-       dataBaseService = DataBaseService()
+        dataBaseService = DataBaseService()
+        LogService.log(.databaseService, level: .info, message: "did create")
     }
     
     func makeContactservice() -> ContactsService
     {
-        return ContactsService.init(databaseService: self.dataBaseService)
+        let service = ContactsService.init(databaseService: self.dataBaseService)
+        LogService.log(.contactsService, level: .info, message: "did create")
+        
+        return service
     }
     
     func makeSyncService() -> SyncService
     {
-        return SyncService.init(networkService: self.networkService,
+        
+        let service = SyncService.init(networkService: self.networkService,
                                 databaseService: self.dataBaseService,
                                 contactsService: self.contactsService)
+        LogService.log(.syncService, level: .info, message: "did create")
+        
+        return service
+    }
+    
+    func makeRootWindowService() -> RootWindowInput
+    {
+        let service =  RootWindowService()
+        LogService.log(.rootWindowService, level: .info, message: "did create")
+        
+        return service
     }
 }

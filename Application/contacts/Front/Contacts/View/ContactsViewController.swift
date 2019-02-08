@@ -25,6 +25,11 @@ class ContactsViewController: UIViewController
         
         output.viewDidReadyForEvents()
     }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+       configureTableViewInsets()
+    }
 }
 
 
@@ -54,6 +59,22 @@ private extension ContactsViewController
         if #available(iOS 11.0, *)
         {
             tableView.contentInsetAdjustmentBehavior = .never
+        }
+    }
+    
+    func configureTableViewInsets()
+    {
+        if let navigationController = self.navigationController
+        {
+            if navigationController.navigationBar.isTranslucent
+            {
+                let navigationControllerHeight = navigationController.navigationBar.bounds.size.height
+                let statusBarOrientation = UIApplication.shared.statusBarOrientation
+                let statusBarIsPortret = (statusBarOrientation == .portrait || statusBarOrientation == .portraitUpsideDown)
+                let statusBarHeight = statusBarIsPortret ? UIApplication.shared.statusBarFrame.height : UIApplication.shared.statusBarFrame.width
+                
+                tableView.contentInset = UIEdgeInsets.init(top: navigationControllerHeight + statusBarHeight, left: 0, bottom: 0, right: 0)
+            }
         }
     }
     
