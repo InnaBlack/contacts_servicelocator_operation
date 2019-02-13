@@ -11,31 +11,30 @@ import Foundation
 
 class DataBaseService
 {
-    private let queue = DispatchQueue.init(label: "DataBaseServiceQueue")
-    
-    var contactRealm: Realm!
+    var readRealm: Realm!
+    var newRealm: Realm
+    {
+        let configuration = self.makeContactConfiguration(readOnly: false)
+        return try! Realm.init(configuration: configuration)
+    }
     
     init()
     {
-        queue.async
-            {
-                let configuration = self.makeContactConfiguration()
-                self.contactRealm = try! Realm.init(configuration: configuration)
-            }
+        let configuration = self.makeContactConfiguration(readOnly: false)
+        self.readRealm = try! Realm.init(configuration: configuration)
     }
 }
 
 private extension DataBaseService
 {
-    func makeContactConfiguration() -> Realm.Configuration
+    func makeContactConfiguration(readOnly: Bool) -> Realm.Configuration
     {
         return Realm.Configuration(
             fileURL: contactsFileUrl(),
             inMemoryIdentifier: "ContactRealm",
-            readOnly: false,
+            readOnly: readOnly,
             schemaVersion: 1,
-            deleteRealmIfMigrationNeeded: false,
-            shouldCompactOnLaunch: shouldCompact())
+            deleteRealmIfMigrationNeeded: false)
     }
     
     func contactsFileUrl() -> URL?

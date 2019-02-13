@@ -29,7 +29,7 @@ class ContactsService
     
     var contacts: [Contact]
     {
-        return cache.loadContacts()
+        return cache.readContacts()()
 //        return cache.contacts
     }
 

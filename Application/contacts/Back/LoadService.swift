@@ -79,10 +79,9 @@ private extension LoadService
     }
     
     func sync(with completion: simpleHandler?)
-    {
+    {   
         var date = Date()
         LogService.log(.loadService, level: .time, message: "Start \(date)")
-        var contacts = [Contact]()
         
         let syncQueue = OperationQueue.init()
         
@@ -92,8 +91,6 @@ private extension LoadService
         {
             let resourceNames = self.resourceNames
             
-            let contactsParser = ContactsParser()
-            
             let requestsGroup = DispatchGroup()
             
             LogService.log(.loadService, level: .time, message: "Start loading resources \(date.timeIntervalSinceNow) s")
@@ -101,8 +98,6 @@ private extension LoadService
             
             for resource in resourceNames
             {
-                
-                
                 requestsGroup.enter()
                 
                 guard let requestURL = self.makeRequestUrl(for: resource) else {break}
@@ -110,13 +105,10 @@ private extension LoadService
                 self.networkService.loadData(from: requestURL, completion:
                     {[weak self] (resultData, errorCode) in
                         
-                        guard let data = resultData else {return} // Network Error
-                        
-                        guard let objectsList = self?.objectsList(from: data) else {return} // Serialization Error
-                        
-                        let parsedContacts = contactsParser.contacts(from: objectsList)
-                        
-                        contacts.append(contentsOf: parsedContacts)
+                        if let someData = resultData, someData.count > 0
+                        {
+                            self?.contactsService.writeContacts(from: someData)
+                        }
                         
                         requestsGroup.leave()
                     })
@@ -133,17 +125,11 @@ private extension LoadService
         {[weak self] in
             DispatchQueue.main.async
                 {
-                    LogService.log(.loadService, level: .time, message: "Start parsing data \(date.timeIntervalSinceNow) s")
                     date = Date()
                     if waitResult == .success
                     {
                         self?.lastSyncDate = Date()
-                        
-                        self?.contactsService.addOrUpdate(contacts: contacts)
                     }
-                    
-                    LogService.log(.loadService, level: .time, message: "End parsing data \(date.timeIntervalSinceNow) s")
-                    date = Date()
                     
                     if let syncCompletion = completion
                     {

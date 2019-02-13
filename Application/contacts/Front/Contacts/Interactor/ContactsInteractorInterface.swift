@@ -6,6 +6,9 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
+import RealmSwift
+
+
 protocol ContactsInteractorInput: class
 {
     func loadItems()
@@ -14,5 +17,15 @@ protocol ContactsInteractorInput: class
 
 protocol ContactsInteractorOutput: class
 {
-    func interactor(didLoad tableData: TableData)
+    func interactorDidLoad(items: Results<Contact>)
+    
+    func interactorNeedsBeginUpdates()
+    
+    func interactorNeedsEndUpdates()
+    
+    func interactorNeedsDelete(rows :[Int])
+    
+    func interactorNeedsInsert(rows :[Int])
+    
+    func interactorNeedsReload(rows :[Int])
 }

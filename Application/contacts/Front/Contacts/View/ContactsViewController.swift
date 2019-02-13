@@ -8,13 +8,14 @@
 
 import UIKit
 import PureLayout
+import RealmSwift
 
 class ContactsViewController: UIViewController
 {
     var output: ContactsViewOutput!
     
     private var tableView: UITableView!
-    private var tableData: TableData!
+    private var tableData: Results<Contact>?
     private let refreshControl = UIRefreshControl.init()
     
     override func viewDidLoad()
@@ -100,13 +101,14 @@ extension ContactsViewController: UITableViewDataSource
 {
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return tableData?.sections.count ?? 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int
     {
-        return tableData.sections[section].items.count
+        guard let items = tableData else {return 1}
+        return items.count
     }
     
     func tableView(_ tableView: UITableView,
@@ -116,14 +118,19 @@ extension ContactsViewController: UITableViewDataSource
                                                 reuseIdentifier: nil)
         settingsCell.contentView.backgroundColor = settingsCell.backgroundColor
         
-        if let item = tableData.item(for: indexPath) as? ContactItem
-        {
-            settingsCell.textLabel?.text = item.title
-            
-            settingsCell.detailTextLabel?.text = item.subtitle
-        }
-        
         return settingsCell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        guard let items = tableData else {return}
+        
+        let item = items[indexPath.row]
+        
+        cell.textLabel?.text = item.title
+        
+        cell.detailTextLabel?.text = item.subtitle
+        
     }
 }
 
@@ -138,7 +145,9 @@ extension ContactsViewController: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        guard let selectedItem = tableData.item(for: indexPath) as? ContactItem else {return}
+        guard let items = tableData else {return}
+        let selectedItem = items[indexPath.row]
+        
         output.viewDidPress(on: selectedItem)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -147,18 +156,39 @@ extension ContactsViewController: UITableViewDelegate
 
 extension ContactsViewController: ContactsViewInput
 {
-    func configure(with tableData: TableData)
+    func beginUpdates()
+    {
+        tableView.beginUpdates()
+    }
+    
+    func endUpdates()
+    {
+        tableView.endUpdates()
+    }
+    
+    func deleteRows(at indexes: [Int])
+    {
+        tableView.deleteRows(at: indexes.map { IndexPath(row: $0, section: 0) },
+                                  with: .automatic)
+    }
+    
+    func insertRows(at indexes: [Int])
+    {
+        tableView.insertRows(at: indexes.map { IndexPath(row: $0, section: 0) },
+                             with: .automatic)
+    }
+    
+    func reloadRows(at indexes: [Int])
+    {
+        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
+                             with: .automatic)
+    }
+    
+    func configure(with tableData: Results<Contact>)
     {
         self.tableData = tableData
         
         refreshControl.endRefreshing()
-        
-        tableView.reloadData()
-    }
-    
-    func update(with tableData: TableData)
-    {
-        self.tableData = tableData
         
         tableView.reloadData()
     }

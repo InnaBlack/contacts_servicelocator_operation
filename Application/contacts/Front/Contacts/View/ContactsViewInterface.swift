@@ -6,11 +6,22 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
+import RealmSwift
+
+
 protocol ContactsViewInput: class
 {
-    func configure(with tableData: TableData)
+    func configure(with tableData: Results<Contact>)
     
-    func update(with tableData: TableData)
+    func beginUpdates()
+    
+    func endUpdates()
+    
+    func deleteRows(at: [Int])
+    
+    func insertRows(at: [Int])
+    
+    func reloadRows(at: [Int])
 }
 
 
@@ -20,7 +31,7 @@ protocol ContactsViewOutput: class
     
     func viewDidPressOnBackButton()
     
-    func viewDidPress(on item: ContactItem)
+    func viewDidPress(on item: CellItem)
     
     func viewDidStartRefresh()
 }

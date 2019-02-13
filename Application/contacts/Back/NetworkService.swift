@@ -15,7 +15,7 @@ class NetworkService
         let task = URLSession.shared.dataTask(with: url)
             { (data, response, error) in
                 
-                completion(data,error?._code ?? 0)
+                completion(data,0)
             }
         
         task.resume()

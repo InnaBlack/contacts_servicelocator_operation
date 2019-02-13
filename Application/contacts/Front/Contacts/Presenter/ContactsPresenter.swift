@@ -6,6 +6,9 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
+import RealmSwift
+
+
 class ContactsPresenter
 {
     weak var userInterface: ContactsViewInput?
@@ -26,7 +29,7 @@ extension ContactsPresenter: ContactsViewOutput
         router.closeModule(animated: true)
     }
     
-    func viewDidPress(on item: ContactItem)
+    func viewDidPress(on item: CellItem)
     {
        
     }
@@ -40,8 +43,36 @@ extension ContactsPresenter: ContactsViewOutput
 
 extension ContactsPresenter: ContactsInteractorOutput
 {
-    func interactor(didLoad tableData: TableData)
+    func interactorDidLoad(items: Results<Contact>)
     {
-        self.userInterface?.configure(with: tableData)
+        userInterface?.configure(with: items)
     }
+    
+    func interactorNeedsBeginUpdates()
+    {
+        userInterface?.beginUpdates()
+    }
+    
+    func interactorNeedsEndUpdates()
+    {
+        userInterface?.endUpdates()
+    }
+    
+    func interactorNeedsDelete(rows: [Int])
+    {
+        userInterface?.deleteRows(at: rows)
+    }
+    
+    func interactorNeedsInsert(rows: [Int])
+    {
+        userInterface?.insertRows(at: rows)
+    }
+    
+    func interactorNeedsReload(rows: [Int])
+    {
+        userInterface?.reloadRows(at: rows)
+    }
+    
+
+
 }

@@ -6,21 +6,10 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-class ContactItem
+protocol CellItem
 {
-    let identifier: String
-    let title: String
-    let subtitle: String
-    let detail: String
-    
-    init(identifier: String,
-         title: String,
-         subtitle: String,
-         detail: String)
-    {
-        self.identifier = identifier
-        self.title = title
-        self.subtitle = subtitle
-        self.detail = detail
-    }
+    var identifier: String {get}
+    var title: String {get}
+    var subtitle: String {get}
+    var detail: String {get}
 }
