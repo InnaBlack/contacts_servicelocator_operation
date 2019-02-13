@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LocatorService
 {
@@ -16,9 +17,10 @@ class LocatorService
     var dataBaseService: DataBaseService!
     
     lazy var loadService = makeLoadService()
-    lazy var contactsService = makeContactservice()
+    lazy var contactsService = makeContactService()
     lazy var rootWindowService = makeRootWindowService()
     
+    lazy var contactsStoryboard = makeContactStoryboard()
     init()
     {
         initEarlyServices()
@@ -45,7 +47,7 @@ private extension LocatorService
         LogService.log(.databaseService, level: .info, message: "did create")
     }
     
-    func makeContactservice() -> ContactsService
+    func makeContactService() -> ContactsService
     {
         let service = ContactsService.init(databaseService: self.dataBaseService)
         LogService.log(.contactsService, level: .info, message: "did create")
@@ -70,5 +72,10 @@ private extension LocatorService
         LogService.log(.rootWindowService, level: .info, message: "did create")
         
         return service
+    }
+    
+    func makeContactStoryboard() -> UIStoryboard
+    {
+        return UIStoryboard.init(name: "ContactsSB", bundle: Bundle.main)
     }
 }

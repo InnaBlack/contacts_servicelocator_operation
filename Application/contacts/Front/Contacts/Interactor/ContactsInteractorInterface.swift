@@ -11,17 +11,17 @@ import RealmSwift
 
 protocol ContactsInteractorInput: class
 {
-    func loadItems()
+    func loadItems(with filter: String?)
 }
 
 
 protocol ContactsInteractorOutput: class
 {
-    func interactorDidLoad(items: Results<Contact>)
+    func interactorDidLoad(items: [CellItem])
     
     func interactorNeedsBeginUpdates()
     
-    func interactorNeedsEndUpdates()
+    func interactorNeedsEndUpdate(items: [CellItem])
     
     func interactorNeedsDelete(rows :[Int])
     

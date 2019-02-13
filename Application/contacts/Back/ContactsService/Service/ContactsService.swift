@@ -11,7 +11,7 @@ import RealmSwift
 
 protocol ContactsServiceInput
 {
-    func readContacts() -> Results<Contact>
+    func readContacts(with filter: String?) -> Results<Contact>
     func writeContacts(from data: Data)
 }
 
@@ -35,15 +35,25 @@ class ContactsService
         
         self.databaseService = databaseService
         
-        contacts = readContacts()
+        contacts = readContacts(with: "")
     }
 }
 
 extension ContactsService: ContactsServiceInput
 {
-    func readContacts() -> Results<Contact>
+    func readContacts(with filter: String?) -> Results<Contact>
     {
-        return readRealm.objects(Contact.self).sorted(byKeyPath: Contact.CodingKeys.name.rawValue, ascending: true)
+        if let filterString = filter, !filterString.isEmpty
+        {
+            return readRealm.objects(Contact.self)
+                .filter("name CONTAINS[c] %@ OR phoneNumber CONTAINS[c] %@", filterString, filterString)
+                .sorted(byKeyPath: Contact.CodingKeys.name.rawValue, ascending: true)
+        }
+        else
+        {
+            return readRealm.objects(Contact.self)
+                .sorted(byKeyPath: Contact.CodingKeys.name.rawValue, ascending: true)
+        }
     }
     
     func writeContacts(from data: Data)

@@ -23,8 +23,6 @@ class ContactsInteractor
     
     var contactsService: ContactsService
     
-    var items: Results<Contact>?
-    
     var filterString: String?
     
     var notificationToken: NotificationToken?
@@ -49,30 +47,19 @@ private extension ContactsInteractor
 
 extension ContactsInteractor: ContactsInteractorInput
 {
-    func loadItems()
+    func loadItems(with filter: String?)
     {
-//        if let filter = filterString, !filter.isEmpty{
-//            items = contactsService.readContacts().filter
-//                {
-//                    return $0.identifier.contains(filter)
-//                        || $0.phoneNumber.contains(filter)
-//            }
-//        }
-//        else
-//        {
-           items = contactsService.readContacts()
-//        }
+        let resultContacts = contactsService.readContacts(with: filter)
         
-        
-        notificationToken = items?.observe(
+        notificationToken = resultContacts.observe(
             { [weak self] (changes) in
                 
-                guard let initialItems = self?.items else {return}
-                
+                let items = Array.init(resultContacts)
                 switch changes
                 {
                 case .initial:
-                    self?.output.interactorDidLoad(items: initialItems)
+
+                    self?.output.interactorDidLoad(items: items)
                     
                 case .update(_, let deletions, let insertions, let modifications):
 
@@ -84,7 +71,7 @@ extension ContactsInteractor: ContactsInteractorInput
                     
                     self?.output.interactorNeedsReload(rows: modifications)
                     
-                    self?.output.interactorNeedsEndUpdates()
+                    self?.output.interactorNeedsEndUpdate(items: items)
                     
                 case .error(let err):
                     

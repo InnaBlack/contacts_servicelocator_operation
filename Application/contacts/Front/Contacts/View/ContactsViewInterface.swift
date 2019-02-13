@@ -11,17 +11,19 @@ import RealmSwift
 
 protocol ContactsViewInput: class
 {
-    func configure(with tableData: Results<Contact>)
+    func configure(with tableData: [CellItem])
     
     func beginUpdates()
     
-    func endUpdates()
+    func endUpdates(with tableData: [CellItem])
     
     func deleteRows(at: [Int])
     
     func insertRows(at: [Int])
     
     func reloadRows(at: [Int])
+    
+    func setSearchBar(hidden: Bool)
 }
 
 
@@ -34,4 +36,6 @@ protocol ContactsViewOutput: class
     func viewDidPress(on item: CellItem)
     
     func viewDidStartRefresh()
+    
+    func viewDidChangeFilter(value: String)
 }

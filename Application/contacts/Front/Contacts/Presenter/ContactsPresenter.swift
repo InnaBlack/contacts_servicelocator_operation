@@ -14,6 +14,8 @@ class ContactsPresenter
     weak var userInterface: ContactsViewInput?
     var interactor: ContactsInteractorInput!
     var router: ContactsRouterInput!
+    
+    private var filterString: String?
 }
 
 
@@ -21,7 +23,7 @@ extension ContactsPresenter: ContactsViewOutput
 {
     func viewDidReadyForEvents()
     {
-        interactor.loadItems()
+        interactor.loadItems(with: filterString)
     }
     
     func viewDidPressOnBackButton()
@@ -36,14 +38,20 @@ extension ContactsPresenter: ContactsViewOutput
     
     func viewDidStartRefresh()
     {
-        interactor.loadItems()
+        interactor.loadItems(with: filterString)
+    }
+    
+    func viewDidChangeFilter(value: String)
+    {
+        filterString = value
+        interactor.loadItems(with: filterString)
     }
 }
 
 
 extension ContactsPresenter: ContactsInteractorOutput
 {
-    func interactorDidLoad(items: Results<Contact>)
+    func interactorDidLoad(items: [CellItem])
     {
         userInterface?.configure(with: items)
     }
@@ -53,9 +61,9 @@ extension ContactsPresenter: ContactsInteractorOutput
         userInterface?.beginUpdates()
     }
     
-    func interactorNeedsEndUpdates()
+    func interactorNeedsEndUpdate(items: [CellItem])
     {
-        userInterface?.endUpdates()
+        userInterface?.endUpdates(with: items)
     }
     
     func interactorNeedsDelete(rows: [Int])

@@ -6,16 +6,20 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
+import UIKit
+
 class ContactsAssembly
 {
     func viewContactsModule() -> ContactsViewController
     {
         let locator = LocatorService.current
         
+        guard let vc = locator.contactsStoryboard.instantiateViewController(withIdentifier: "ContactsTVC") as? ContactsViewController
+            else {return ContactsViewController()}
+        
         let interactor =
             ContactsInteractor.init(contactsService: locator.contactsService)
         
-        let vc = ContactsViewController()
         let presenter = ContactsPresenter()
         let router = ContactsRouter()
         
