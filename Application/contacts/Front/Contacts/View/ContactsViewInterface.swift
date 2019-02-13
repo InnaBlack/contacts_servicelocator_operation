@@ -6,8 +6,6 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-import RealmSwift
-
 
 protocol ContactsViewInput: class
 {

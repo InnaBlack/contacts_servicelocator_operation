@@ -6,9 +6,6 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-import RealmSwift
-
-
 protocol ContactsInteractorInput: class
 {
     func loadItems(with filter: String?)

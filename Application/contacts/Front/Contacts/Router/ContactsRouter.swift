@@ -21,4 +21,13 @@ extension ContactsRouter: ContactsRouterInput
     {
         viewController.navigationController?.popViewController(animated: animated)
     }
+    
+    func openContactInfo(with identifier: String)
+    {
+        let infoVC = ContactInfoAssembly().viewContactInfoModule()
+        
+        infoVC.input.configure(with: identifier)
+        
+        viewController.navigationController?.pushViewController(infoVC, animated: true)
+    }
 }

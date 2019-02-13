@@ -9,17 +9,16 @@
 import Foundation
 import RealmSwift
 
+
 protocol ContactsServiceInput
 {
     func readContacts(with filter: String?) -> Results<Contact>
+    
+    func readContact(with identifier: String) -> Contact?
+    
     func writeContacts(from data: Data)
 }
 
-
-protocol ContactsServiceOutput
-{
-    func didUpdateContacts()
-}
 
 class ContactsService
 {
@@ -56,6 +55,11 @@ extension ContactsService: ContactsServiceInput
         }
     }
     
+    func readContact(with identifier: String) -> Contact?
+    {
+       return readRealm.object(ofType: Contact.self, forPrimaryKey: identifier)
+    }
+    
     func writeContacts(from data: Data)
     {
         DispatchQueue.global().async {
@@ -81,13 +85,5 @@ extension ContactsService: ContactsServiceInput
                     }
                 }
             }
-    }
-}
-
-extension ContactsService: ContactsServiceOutput
-{
-    func didUpdateContacts()
-    {
-        //
     }
 }

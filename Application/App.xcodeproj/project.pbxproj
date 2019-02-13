@@ -29,6 +29,15 @@
 		B23D3F80220DC55000043985 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F7F220DC55000043985 /* LogService.swift */; };
 		B23D3F842214168600043985 /* ContactsSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B23D3F832214168600043985 /* ContactsSB.storyboard */; };
 		B23D3F86221418BD00043985 /* ContactsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F85221418BD00043985 /* ContactsTVCell.swift */; };
+		B23D3F97221450B000043985 /* ContactInfoAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F89221450B000043985 /* ContactInfoAssembly.swift */; };
+		B23D3F98221450B000043985 /* ContactInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F8B221450B000043985 /* ContactInfoPresenter.swift */; };
+		B23D3F9A221450B000043985 /* ContactInfoViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F8E221450B000043985 /* ContactInfoViewInterface.swift */; };
+		B23D3F9B221450B000043985 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F8F221450B000043985 /* ContactInfoViewController.swift */; };
+		B23D3F9C221450B000043985 /* ContactInfoInteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F91221450B000043985 /* ContactInfoInteractorInterface.swift */; };
+		B23D3F9D221450B000043985 /* ContactInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F92221450B000043985 /* ContactInfoItem.swift */; };
+		B23D3F9E221450B000043985 /* ContactInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F93221450B000043985 /* ContactInfoInteractor.swift */; };
+		B23D3F9F221450B000043985 /* ContactsInfoRouterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F95221450B000043985 /* ContactsInfoRouterInterface.swift */; };
+		B23D3FA0221450B000043985 /* ContactsInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F96221450B000043985 /* ContactsInfoRouter.swift */; };
 		B2F7CBF122003B0F00D6C868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */; };
 		B2F7CBF822003B1200D6C868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F7CBF722003B1200D6C868 /* Assets.xcassets */; };
 		B2F7CBFB22003B1200D6C868 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F7CBF922003B1200D6C868 /* LaunchScreen.storyboard */; };
@@ -58,6 +67,15 @@
 		B23D3F7F220DC55000043985 /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
 		B23D3F832214168600043985 /* ContactsSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactsSB.storyboard; sourceTree = "<group>"; };
 		B23D3F85221418BD00043985 /* ContactsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTVCell.swift; sourceTree = "<group>"; };
+		B23D3F89221450B000043985 /* ContactInfoAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoAssembly.swift; sourceTree = "<group>"; };
+		B23D3F8B221450B000043985 /* ContactInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoPresenter.swift; sourceTree = "<group>"; };
+		B23D3F8E221450B000043985 /* ContactInfoViewInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewInterface.swift; sourceTree = "<group>"; };
+		B23D3F8F221450B000043985 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
+		B23D3F91221450B000043985 /* ContactInfoInteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoInteractorInterface.swift; sourceTree = "<group>"; };
+		B23D3F92221450B000043985 /* ContactInfoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoItem.swift; sourceTree = "<group>"; };
+		B23D3F93221450B000043985 /* ContactInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoInteractor.swift; sourceTree = "<group>"; };
+		B23D3F95221450B000043985 /* ContactsInfoRouterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsInfoRouterInterface.swift; sourceTree = "<group>"; };
+		B23D3F96221450B000043985 /* ContactsInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsInfoRouter.swift; sourceTree = "<group>"; };
 		B2F7CBED22003B0F00D6C868 /* contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2F7CBF722003B1200D6C868 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,7 +130,9 @@
 		B23AD43C22018248007EA3FE /* Front */ = {
 			isa = PBXGroup;
 			children = (
+				B23D3F832214168600043985 /* ContactsSB.storyboard */,
 				B23D3F5E220AD18A00043985 /* Contacts */,
+				B23D3F87221450B000043985 /* ContactInfo */,
 			);
 			path = Front;
 			sourceTree = "<group>";
@@ -167,7 +187,6 @@
 		B23D3F63220AD18A00043985 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B23D3F832214168600043985 /* ContactsSB.storyboard */,
 				B23D3F64220AD18A00043985 /* ContactsViewInterface.swift */,
 				B23D3F65220AD18A00043985 /* ContactsViewController.swift */,
 				B23D3F85221418BD00043985 /* ContactsTVCell.swift */,
@@ -202,6 +221,62 @@
 			);
 			name = Common;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		B23D3F87221450B000043985 /* ContactInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F88221450B000043985 /* Assembly */,
+				B23D3F8A221450B000043985 /* Presenter */,
+				B23D3F8C221450B000043985 /* View */,
+				B23D3F90221450B000043985 /* Interactor */,
+				B23D3F94221450B000043985 /* Router */,
+			);
+			path = ContactInfo;
+			sourceTree = "<group>";
+		};
+		B23D3F88221450B000043985 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F89221450B000043985 /* ContactInfoAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		B23D3F8A221450B000043985 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F8B221450B000043985 /* ContactInfoPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		B23D3F8C221450B000043985 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F8E221450B000043985 /* ContactInfoViewInterface.swift */,
+				B23D3F8F221450B000043985 /* ContactInfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B23D3F90221450B000043985 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F91221450B000043985 /* ContactInfoInteractorInterface.swift */,
+				B23D3F92221450B000043985 /* ContactInfoItem.swift */,
+				B23D3F93221450B000043985 /* ContactInfoInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		B23D3F94221450B000043985 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F95221450B000043985 /* ContactsInfoRouterInterface.swift */,
+				B23D3F96221450B000043985 /* ContactsInfoRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		B2F7CBE422003B0F00D6C868 = {
@@ -361,25 +436,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				B23AD43F22018C06007EA3FE /* LocatorService.swift in Sources */,
+				B23D3F9B221450B000043985 /* ContactInfoViewController.swift in Sources */,
+				B23D3F9A221450B000043985 /* ContactInfoViewInterface.swift in Sources */,
 				B23D3F70220AD18A00043985 /* ContactsViewController.swift in Sources */,
 				B23D3F232208B80700043985 /* Contact.swift in Sources */,
 				B23D3F6E220AD18A00043985 /* ContactsPresenter.swift in Sources */,
+				B23D3F9D221450B000043985 /* ContactInfoItem.swift in Sources */,
+				B23D3FA0221450B000043985 /* ContactsInfoRouter.swift in Sources */,
 				B23D3F7A220AEEF400043985 /* SortDesc.swift in Sources */,
 				B23D3F77220AD62400043985 /* TableData.swift in Sources */,
+				B23D3F9E221450B000043985 /* ContactInfoInteractor.swift in Sources */,
 				B23D3F71220AD18A00043985 /* ContactItem.swift in Sources */,
 				B23D3F7E220D84AD00043985 /* RootWindowService.swift in Sources */,
 				B23D3F1C2208B61700043985 /* LoadService.swift in Sources */,
 				B23D3F74220AD18A00043985 /* ContactsRouter.swift in Sources */,
 				B23D3F6F220AD18A00043985 /* ContactsViewInterface.swift in Sources */,
+				B23D3F98221450B000043985 /* ContactInfoPresenter.swift in Sources */,
 				B23D3F412209AF9800043985 /* ContactsService.swift in Sources */,
+				B23D3F9F221450B000043985 /* ContactsInfoRouterInterface.swift in Sources */,
 				B23AD43A22018228007EA3FE /* NetworkService.swift in Sources */,
 				B23D3F73220AD18A00043985 /* ContactsInteractor.swift in Sources */,
+				B23D3F9C221450B000043985 /* ContactInfoInteractorInterface.swift in Sources */,
 				B23D3F6D220AD18A00043985 /* ContactsAssembly.swift in Sources */,
 				B23D3F75220AD18A00043985 /* ContactsRouterInterface.swift in Sources */,
 				B23D3F72220AD18A00043985 /* ContactsInteractorInterface.swift in Sources */,
 				B23D3F86221418BD00043985 /* ContactsTVCell.swift in Sources */,
 				B23AD44122019210007EA3FE /* DataBaseService.swift in Sources */,
 				B2F7CBF122003B0F00D6C868 /* AppDelegate.swift in Sources */,
+				B23D3F97221450B000043985 /* ContactInfoAssembly.swift in Sources */,
 				B23D3F80220DC55000043985 /* LogService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PureLayout
+
 
 let cellReuseIdentifier = "DetailedCell"
 

@@ -80,14 +80,3 @@ extension ContactsInteractor: ContactsInteractorInput
         })
     }
 }
-
-
-extension ContactsInteractor: ContactsServiceOutput
-{
-    func didUpdateContacts()
-    {
-        //
-    }
-    
-
-}

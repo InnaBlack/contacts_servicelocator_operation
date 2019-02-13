@@ -6,8 +6,6 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-import RealmSwift
-
 
 class ContactsPresenter
 {
@@ -33,7 +31,7 @@ extension ContactsPresenter: ContactsViewOutput
     
     func viewDidPress(on item: CellItem)
     {
-       
+       router.openContactInfo(with: item.identifier)
     }
     
     func viewDidStartRefresh()
