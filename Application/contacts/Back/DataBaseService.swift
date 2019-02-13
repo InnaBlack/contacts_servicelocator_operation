@@ -11,19 +11,22 @@ import Foundation
 
 class DataBaseService
 {
-    lazy var contactRealm = makeContactRealm()
+    private let queue = DispatchQueue.init(label: "DataBaseServiceQueue")
+    
+    var contactRealm: Realm!
+    
+    init()
+    {
+        queue.async
+            {
+                let configuration = self.makeContactConfiguration()
+                self.contactRealm = try! Realm.init(configuration: configuration)
+            }
+    }
 }
 
 private extension DataBaseService
 {
-    func makeContactRealm() -> Realm
-    {
-        let configuration = makeContactConfiguration()
-        let realm = try! Realm.init(configuration: configuration)
-        
-        return realm
-    }
-    
     func makeContactConfiguration() -> Realm.Configuration
     {
         return Realm.Configuration(

@@ -15,7 +15,7 @@ class LocatorService
     var networkService: NetworkService!
     var dataBaseService: DataBaseService!
     
-    lazy var syncService = makeSyncService()
+    lazy var loadService = makeLoadService()
     lazy var contactsService = makeContactservice()
     lazy var rootWindowService = makeRootWindowService()
     
@@ -53,13 +53,13 @@ private extension LocatorService
         return service
     }
     
-    func makeSyncService() -> SyncService
+    func makeLoadService() -> LoadService
     {
         
-        let service = SyncService.init(networkService: self.networkService,
+        let service = LoadService.init(networkService: self.networkService,
                                 databaseService: self.dataBaseService,
                                 contactsService: self.contactsService)
-        LogService.log(.syncService, level: .info, message: "did create")
+        LogService.log(.loadService, level: .info, message: "did create")
         
         return service
     }

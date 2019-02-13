@@ -1,5 +1,5 @@
 //
-//  SyncService.swift
+//  LoadService.swift
 //  contacts
 //
 //  Created by Nikolay Gladkovskiy on 04/02/2019.
@@ -15,19 +15,19 @@ typealias simpleHandler = () -> Void
 let syncInterval: TimeInterval = 300 // in seconds
 
 
-protocol SyncServiceInput
+protocol LoadServiceInput
 {
     func sync(with completion: simpleHandler?)
 }
 
 
-protocol SyncServiceOutput
+protocol LoadServiceOutput
 {
 
 }
 
 
-class SyncService
+class LoadService
 {
     private let serverPath = "https://github.com/SkbkonturMobile/mobile-test-ios/blob/master/json/"
     private let query = "raw=true"
@@ -55,7 +55,7 @@ class SyncService
     }
 }
 
-private extension SyncService
+private extension LoadService
 {
     func start()
     {
@@ -81,7 +81,7 @@ private extension SyncService
     func sync(with completion: simpleHandler?)
     {
         var date = Date()
-        LogService.log(.syncService, level: .time, message: "Start \(date)")
+        LogService.log(.loadService, level: .time, message: "Start \(date)")
         var contacts = [Contact]()
         
         let syncQueue = OperationQueue.init()
@@ -96,7 +96,7 @@ private extension SyncService
             
             let requestsGroup = DispatchGroup()
             
-            LogService.log(.syncService, level: .time, message: "Start loading resources \(date.timeIntervalSinceNow) s")
+            LogService.log(.loadService, level: .time, message: "Start loading resources \(date.timeIntervalSinceNow) s")
             date = Date()
             
             for resource in resourceNames
@@ -125,7 +125,7 @@ private extension SyncService
 //            requestsGroup.wait()
             waitResult = requestsGroup.wait(timeout: .now() + syncInterval/2)
             
-            LogService.log(.syncService, level: .time, message: "End loading resources \(date.timeIntervalSinceNow) s")
+            LogService.log(.loadService, level: .time, message: "End loading resources \(date.timeIntervalSinceNow) s")
             date = Date()
         }
         
@@ -133,7 +133,7 @@ private extension SyncService
         {[weak self] in
             DispatchQueue.main.async
                 {
-                    LogService.log(.syncService, level: .time, message: "Start parsing data \(date.timeIntervalSinceNow) s")
+                    LogService.log(.loadService, level: .time, message: "Start parsing data \(date.timeIntervalSinceNow) s")
                     date = Date()
                     if waitResult == .success
                     {
@@ -142,7 +142,7 @@ private extension SyncService
                         self?.contactsService.addOrUpdate(contacts: contacts)
                     }
                     
-                    LogService.log(.syncService, level: .time, message: "End parsing data \(date.timeIntervalSinceNow) s")
+                    LogService.log(.loadService, level: .time, message: "End parsing data \(date.timeIntervalSinceNow) s")
                     date = Date()
                     
                     if let syncCompletion = completion

@@ -13,7 +13,7 @@ enum ServiceName
 {
     case networkService
     case databaseService
-    case syncService
+    case loadService
     case locatorService
     case contactsService
     case rootWindowService

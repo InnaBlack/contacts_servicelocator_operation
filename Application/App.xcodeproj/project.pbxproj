@@ -11,7 +11,7 @@
 		B23AD43A22018228007EA3FE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD43922018228007EA3FE /* NetworkService.swift */; };
 		B23AD43F22018C06007EA3FE /* LocatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD43E22018C06007EA3FE /* LocatorService.swift */; };
 		B23AD44122019210007EA3FE /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD44022019210007EA3FE /* DataBaseService.swift */; };
-		B23D3F1C2208B61700043985 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F1B2208B61700043985 /* SyncService.swift */; };
+		B23D3F1C2208B61700043985 /* LoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F1B2208B61700043985 /* LoadService.swift */; };
 		B23D3F1E2208B7D200043985 /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F1D2208B7D200043985 /* ContactsService.swift */; };
 		B23D3F212208B7EC00043985 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F202208B7EC00043985 /* Contact.swift */; };
 		B23D3F232208B80700043985 /* RealmContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23D3F222208B80700043985 /* RealmContact.swift */; };
@@ -41,7 +41,7 @@
 		B23AD43922018228007EA3FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B23AD43E22018C06007EA3FE /* LocatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocatorService.swift; sourceTree = "<group>"; };
 		B23AD44022019210007EA3FE /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
-		B23D3F1B2208B61700043985 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
+		B23D3F1B2208B61700043985 /* LoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadService.swift; sourceTree = "<group>"; };
 		B23D3F1D2208B7D200043985 /* ContactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsService.swift; sourceTree = "<group>"; };
 		B23D3F202208B7EC00043985 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		B23D3F222208B80700043985 /* RealmContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmContact.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 				B23D3F7D220D84AD00043985 /* RootWindowService.swift */,
 				B23AD44022019210007EA3FE /* DataBaseService.swift */,
 				B23AD43E22018C06007EA3FE /* LocatorService.swift */,
-				B23D3F1B2208B61700043985 /* SyncService.swift */,
+				B23D3F1B2208B61700043985 /* LoadService.swift */,
 				B23D3F7F220DC55000043985 /* LogService.swift */,
 				B23D3F1F2208B7D700043985 /* ContactsService */,
 			);
@@ -395,7 +395,7 @@
 				B23D3F71220AD18A00043985 /* ContactItem.swift in Sources */,
 				B23D3F7E220D84AD00043985 /* RootWindowService.swift in Sources */,
 				B23D3F1E2208B7D200043985 /* ContactsService.swift in Sources */,
-				B23D3F1C2208B61700043985 /* SyncService.swift in Sources */,
+				B23D3F1C2208B61700043985 /* LoadService.swift in Sources */,
 				B23D3F252208C10900043985 /* ContactsParser.swift in Sources */,
 				B23D3F212208B7EC00043985 /* Contact.swift in Sources */,
 				B23D3F74220AD18A00043985 /* ContactsRouter.swift in Sources */,

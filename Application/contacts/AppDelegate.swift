@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let locator = LocatorService.current
         
-        _ = locator.syncService
+        _ = locator.loadService
        
         let vc = ContactsAssembly().viewContactsModule()
         locator.rootWindowService.push(viewController: vc)
