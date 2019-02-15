@@ -23,13 +23,17 @@ class ContactsInteractor
     
     var contactsService: ContactsService
     
+    var loadService: LoadService
+    
     var filterString: String?
     
     var notificationToken: NotificationToken?
 
-    init(contactsService: ContactsService)
+    init(contactsService: ContactsService, loadService: LoadService)
     {
         self.contactsService = contactsService
+        
+        self.loadService = loadService
     }
     
     deinit
@@ -71,5 +75,10 @@ extension ContactsInteractor: ContactsInteractorInput
                     fatalError("\(err)")
                 }
         })
+    }
+    
+    func reloadItems()
+    {
+        loadService.sync(with: nil)
     }
 }

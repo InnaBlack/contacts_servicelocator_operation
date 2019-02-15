@@ -36,7 +36,7 @@ extension ContactsPresenter: ContactsViewOutput
     
     func viewDidStartRefresh()
     {
-        interactor.loadItems(with: filterString)
+        interactor.reloadItems()
     }
     
     func viewDidChangeFilter(value: String?)
