@@ -32,7 +32,7 @@ class ContactsViewController: UITableViewController
     {
         super.viewWillAppear(animated)
         
-        view.makeToastActivity(.center)
+        view.makeToastActivity(.top)
     }
 }
 
@@ -120,7 +120,6 @@ extension ContactsViewController
         detailedCell.subtitleLabel.text = item.subtitle
         
         detailedCell.detailLabel.text = item.detail
-        
     }
 }
 
@@ -143,6 +142,7 @@ extension ContactsViewController
         let selectedItem = items[indexPath.row]
         
         output.viewDidPress(on: selectedItem)
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -158,6 +158,7 @@ extension ContactsViewController: ContactsViewInput
     func endUpdates(with items: [CellItem])
     {
         self.items = items
+        
         tableView.endUpdates()
     }
     
