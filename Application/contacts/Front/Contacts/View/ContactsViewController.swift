@@ -152,7 +152,11 @@ extension ContactsViewController: ContactsViewInput
     {
         self.items = items
         
+        refreshControl?.endRefreshing()
+        
         tableView.endUpdates()
+        
+        return
     }
     
     func deleteRows(at indexes: [Int])
