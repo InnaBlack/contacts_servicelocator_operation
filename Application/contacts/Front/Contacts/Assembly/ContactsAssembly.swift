@@ -13,15 +13,15 @@ class ContactsAssembly
     func viewContactsModule() -> ContactsViewController
     {
         let locator = LocatorService.current
-        
-        guard let vc = locator.contactsStoryboard.instantiateViewController(withIdentifier: "ContactsTVC") as? ContactsViewController
-            else {return ContactsViewController()}
-        
+    
         let interactor =
             ContactsInteractor.init(contactsService: locator.contactsService)
         
         let presenter = ContactsPresenter()
         let router = ContactsRouter()
+        
+        guard let vc = locator.contactsStoryboard.instantiateViewController(withIdentifier: "ContactsTVC") as? ContactsViewController
+            else {return ContactsViewController()}
         
         vc.output = presenter
         presenter.userInterface = vc

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Toast_Swift
 
 let cellReuseIdentifier = "DetailedCell"
 
@@ -15,9 +15,7 @@ class ContactsViewController: UITableViewController
 {
     var output: ContactsViewOutput!
 
-    private var tableData: [CellItem]?
-    
-    @IBOutlet weak var searchBar: UISearchBar!
+    private var items = [CellItem]()
     
     override func viewDidLoad()
     {
@@ -25,14 +23,16 @@ class ContactsViewController: UITableViewController
         
         configureController()
         configureRefreshControl()
-        configureTableViewOffset()
         configureSearchBar()
+        
         output.viewDidReadyForEvents()
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
-       configureTableViewOffset()
+        super.viewWillAppear(animated)
+        
+        view.makeToastActivity(.center)
     }
 }
 
@@ -56,17 +56,13 @@ private extension ContactsViewController
     
     func configureTableView()
     {
-        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableHeaderView = UIView(frame: CGRect.zero)
     }
     
     @objc func refreshContent()
     {
         output.viewDidStartRefresh()
-    }
-    
-    func configureTableViewOffset()
-    {
-            tableView.contentOffset = CGPoint.init(x: 0, y: self.searchBar.frame.height)
     }
     
     func didPressOnBackButton()
@@ -76,15 +72,17 @@ private extension ContactsViewController
     
     func configureSearchBar()
     {
-        searchBar.delegate = self
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        self.navigationItem.searchController = search
     }
 }
 
-extension ContactsViewController: UISearchBarDelegate
+extension ContactsViewController: UISearchResultsUpdating
 {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    func updateSearchResults(for searchController: UISearchController)
     {
-        output.viewDidChangeFilter(value: searchText)
+        output.viewDidChangeFilter(value: searchController.searchBar.text)
     }
 }
 
@@ -99,7 +97,6 @@ extension ContactsViewController
     override func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int
     {
-        guard let items = tableData else {return 1}
         return items.count
     }
     
@@ -113,7 +110,6 @@ extension ContactsViewController
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
-        guard let items = tableData else {return}
         
         guard let detailedCell = cell as? ContactsTVCell else {return}
         
@@ -144,7 +140,6 @@ extension ContactsViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        guard let items = tableData else {return}
         let selectedItem = items[indexPath.row]
         
         output.viewDidPress(on: selectedItem)
@@ -160,9 +155,9 @@ extension ContactsViewController: ContactsViewInput
         tableView.beginUpdates()
     }
     
-    func endUpdates(with tableData: [CellItem])
+    func endUpdates(with items: [CellItem])
     {
-        self.tableData = tableData
+        self.items = items
         tableView.endUpdates()
     }
     
@@ -184,17 +179,14 @@ extension ContactsViewController: ContactsViewInput
                              with: .automatic)
     }
     
-    func configure(with tableData: [CellItem])
+    func configure(with items: [CellItem])
     {
-        self.tableData = tableData
+        self.items = items
         
         refreshControl?.endRefreshing()
         
         tableView.reloadData()
-    }
-    
-    func setSearchBar(hidden: Bool)
-    {
-        searchBar.isHidden = hidden
+        
+        view.hideToastActivity()
     }
 }

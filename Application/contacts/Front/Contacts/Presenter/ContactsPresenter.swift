@@ -39,7 +39,7 @@ extension ContactsPresenter: ContactsViewOutput
         interactor.loadItems(with: filterString)
     }
     
-    func viewDidChangeFilter(value: String)
+    func viewDidChangeFilter(value: String?)
     {
         filterString = value
         interactor.loadItems(with: filterString)

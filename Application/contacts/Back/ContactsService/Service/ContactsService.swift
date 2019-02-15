@@ -24,8 +24,6 @@ class ContactsService
 {
     private var readRealm: Realm!
     
-    var contacts: Results<Contact>!
-    
     let databaseService: DataBaseService
     
     init(databaseService: DataBaseService)
@@ -33,8 +31,6 @@ class ContactsService
         readRealm = databaseService.readRealm
         
         self.databaseService = databaseService
-        
-        contacts = readContacts(with: "")
     }
 }
 
@@ -69,19 +65,26 @@ extension ContactsService: ContactsServiceInput
                     guard let self = self else {return}
                     
                     let writeRealm = self.databaseService.newRealm
-                    try! writeRealm.write
+                    do
                     {
-                        do
+                        try writeRealm.write
                         {
-                            let decoder = JSONDecoder()
-                            decoder.dateDecodingStrategy = .iso8601
-                            let contacts = try decoder.decode([Contact].self, from: data)
-                            writeRealm.add(contacts)
+                            do
+                            {
+                                let decoder = JSONDecoder()
+                                decoder.dateDecodingStrategy = .iso8601
+                                let contacts = try decoder.decode([Contact].self, from: data)
+                                writeRealm.add(contacts)
+                            }
+                            catch
+                            {
+                                print(error)
+                            }
                         }
-                        catch
-                        {
-                            print(error)
-                        }
+                    }
+                    catch
+                    {
+                        print(error)
                     }
                 }
             }

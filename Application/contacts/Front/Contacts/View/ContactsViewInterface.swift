@@ -9,19 +9,17 @@
 
 protocol ContactsViewInput: class
 {
-    func configure(with tableData: [CellItem])
+    func configure(with items: [CellItem])
     
     func beginUpdates()
     
-    func endUpdates(with tableData: [CellItem])
+    func endUpdates(with items: [CellItem])
     
     func deleteRows(at: [Int])
     
     func insertRows(at: [Int])
     
     func reloadRows(at: [Int])
-    
-    func setSearchBar(hidden: Bool)
 }
 
 
@@ -35,5 +33,5 @@ protocol ContactsViewOutput: class
     
     func viewDidStartRefresh()
     
-    func viewDidChangeFilter(value: String)
+    func viewDidChangeFilter(value: String?)
 }

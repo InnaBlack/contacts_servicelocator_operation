@@ -1,30 +1,26 @@
 PODS:
-  - PureLayout (3.1.4)
   - Realm (3.11.1):
     - Realm/Headers (= 3.11.1)
   - Realm/Headers (3.11.1)
   - RealmSwift (3.11.1):
     - Realm (= 3.11.1)
-  - SVProgressHUD (2.2.5)
+  - Toast-Swift (4.0.0)
 
 DEPENDENCIES:
-  - PureLayout
   - RealmSwift
-  - SVProgressHUD
+  - Toast-Swift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - PureLayout
     - Realm
     - RealmSwift
-    - SVProgressHUD
+    - Toast-Swift
 
 SPEC CHECKSUMS:
-  PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
   RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
 
-PODFILE CHECKSUM: 60cf024cf1cdc7ee690008c4438c1c26d43f02ad
+PODFILE CHECKSUM: c816ca1684c724cd4fe1c793de9d47d4b042ea9e
 
 COCOAPODS: 1.5.3

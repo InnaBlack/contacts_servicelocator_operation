@@ -9,8 +9,7 @@ target 'contacts' do
 
   # Pods for contacts
 
-pod 'SVProgressHUD'
+pod 'Toast-Swift'
 pod 'RealmSwift'
-pod 'PureLayout'
 
 end

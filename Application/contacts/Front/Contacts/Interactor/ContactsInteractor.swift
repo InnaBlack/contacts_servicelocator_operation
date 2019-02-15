@@ -38,13 +38,6 @@ class ContactsInteractor
     }
 }
 
-
-private extension ContactsInteractor
-{
-
-}
-
-
 extension ContactsInteractor: ContactsInteractorInput
 {
     func loadItems(with filter: String?)

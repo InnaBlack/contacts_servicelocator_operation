@@ -20,7 +20,7 @@ extension Contact: ContactInfoItem
     
     func dateFormatter() -> DateFormatter
     {
-        let formatter = DateFormatter.init()
+        let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }
@@ -63,8 +63,8 @@ extension ContactInfoInteractor: ContactInfoInteractorInput
     {
         guard let contactPhone = contact?.phoneNumber else {return nil}
         
-        let path = "tel://\(contactPhone)"
+        let contactPhoneNumbers = contactPhone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let path = "tel://\(contactPhoneNumbers)"
         return URL.init(string: path)
-
     }
 }

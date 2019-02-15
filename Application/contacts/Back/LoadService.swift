@@ -75,6 +75,7 @@ private extension LoadService
             })
         
         RunLoop.main.add(syncTimer!, forMode: .default)
+        
         syncTimer?.fire()
     }
     

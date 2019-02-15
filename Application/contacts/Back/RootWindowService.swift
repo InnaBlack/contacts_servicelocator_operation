@@ -44,6 +44,7 @@ extension RootWindowService: RootWindowInput
         else
         {
             let rootNC = UINavigationController.init(rootViewController: viewController)
+            rootNC.navigationBar.prefersLargeTitles = true
             rootNavigationController = rootNC
             show(viewController: rootNC)
         }
