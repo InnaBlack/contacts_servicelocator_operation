@@ -27,13 +27,6 @@ class ContactsViewController: UITableViewController
         
         output.viewDidReadyForEvents()
     }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        
-        view.makeToastActivity(.top)
-    }
 }
 
 
@@ -57,7 +50,7 @@ private extension ContactsViewController
     func configureTableView()
     {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.tableHeaderView = UIView(frame: CGRect.zero)
+        tableView.tableHeaderView = UIView(frame: view.bounds)
     }
     
     @objc func refreshContent()
@@ -187,7 +180,5 @@ extension ContactsViewController: ContactsViewInput
         refreshControl?.endRefreshing()
         
         tableView.reloadData()
-        
-        view.hideToastActivity()
     }
 }

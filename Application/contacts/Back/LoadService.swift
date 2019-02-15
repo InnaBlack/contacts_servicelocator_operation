@@ -12,8 +12,8 @@ import RealmSwift
 typealias simpleHandler = () -> Void
 
 
-let syncInterval: TimeInterval = 300 // in seconds
-
+let syncInterval: TimeInterval = 60 // in seconds
+let lastLoadDateKey = "LastLoadDateKey"
 
 protocol LoadServiceInput
 {
@@ -40,7 +40,18 @@ class LoadService
     private let databaseService: DataBaseService
     private let contactsService: ContactsService
     
-    private var lastSyncDate = Date.distantPast
+    private var lastLoadDate: Date
+    {
+        get
+        {
+            return UserDefaults().value(forKey: lastLoadDateKey) as? Date ?? Date.distantPast
+        }
+        
+        set
+        {
+          UserDefaults().set(newValue, forKey: lastLoadDateKey)
+        }
+    }
     private var syncTimer: Timer?
     
     init(networkService: NetworkService,
@@ -55,32 +66,45 @@ class LoadService
     }
 }
 
+
 private extension LoadService
 {
     func start()
     {
-        invalidatePreviousTimerAndSendSyncAfterDelay()
+        if lastLoadDate.timeIntervalSinceNow > syncInterval
+        {
+            sync(with: nil)
+        }
     }
     
-    func invalidatePreviousTimerAndSendSyncAfterDelay()
+    func makeRequestUrl(for resource: String) -> URL?
     {
-        syncTimer?.invalidate()
-        
-        syncTimer = Timer.init(timeInterval: syncInterval,
-                               repeats: true,
-                               block:
-            { [weak self] (_) in
-                
-                self?.sync(with: nil)
-            })
-        
-        RunLoop.main.add(syncTimer!, forMode: .default)
-        
-        syncTimer?.fire()
+        let requestPath = serverPath + resource + "?" + query
+        return URL.init(string: requestPath)
     }
     
+    func objectsList(from data: Data) -> [Any]?
+    {
+        do{
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+            
+            guard let objectsList = jsonObject as? [Any]
+                else {return[]}
+            
+            return objectsList
+        }
+        catch
+        {
+            return nil
+        }
+    }
+}
+
+
+extension LoadService: LoadServiceInput
+{
     func sync(with completion: simpleHandler?)
-    {   
+    {
         var date = Date()
         LogService.log(.loadService, level: .time, message: "Start \(date)")
         
@@ -112,10 +136,10 @@ private extension LoadService
                         }
                         
                         requestsGroup.leave()
-                    })
+                })
             }
             
-//            requestsGroup.wait()
+            //            requestsGroup.wait()
             waitResult = requestsGroup.wait(timeout: .now() + syncInterval/2)
             
             LogService.log(.loadService, level: .time, message: "End loading resources \(date.timeIntervalSinceNow) s")
@@ -124,12 +148,13 @@ private extension LoadService
         
         let responseOperation = BlockOperation
         {[weak self] in
+            
             DispatchQueue.main.async
                 {
                     date = Date()
                     if waitResult == .success
                     {
-                        self?.lastSyncDate = Date()
+                        self?.lastLoadDate = Date()
                     }
                     
                     if let syncCompletion = completion
@@ -143,28 +168,5 @@ private extension LoadService
         
         syncQueue.addOperation(requestOperation)
         syncQueue.addOperation(responseOperation)
-        
-    }
-    
-    func makeRequestUrl(for resource: String) -> URL?
-    {
-        let requestPath = serverPath + resource + "?" + query
-        return URL.init(string: requestPath)
-    }
-    
-    func objectsList(from data: Data) -> [Any]?
-    {
-        do{
-            let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
-            
-            guard let objectsList = jsonObject as? [Any]
-                else {return[]}
-            
-            return objectsList
-        }
-        catch
-        {
-            return nil
-        }
     }
 }

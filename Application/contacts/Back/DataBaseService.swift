@@ -29,12 +29,12 @@ private extension DataBaseService
 {
     func makeContactConfiguration(readOnly: Bool) -> Realm.Configuration
     {
-        return Realm.Configuration(
+        let config = Realm.Configuration(
             fileURL: contactsFileUrl(),
-            inMemoryIdentifier: "ContactRealm",
             readOnly: readOnly,
             schemaVersion: 1,
             deleteRealmIfMigrationNeeded: false)
+        return config
     }
     
     func contactsFileUrl() -> URL?
