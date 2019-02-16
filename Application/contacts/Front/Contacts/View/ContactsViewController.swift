@@ -150,13 +150,11 @@ extension ContactsViewController: ContactsViewInput
     
     func endUpdates(with items: [CellItem])
     {
-        self.items = items
-        
         refreshControl?.endRefreshing()
         
-        tableView.endUpdates()
+        self.items = items
         
-        return
+        tableView.endUpdates()
     }
     
     func deleteRows(at indexes: [Int])
@@ -173,8 +171,12 @@ extension ContactsViewController: ContactsViewInput
     
     func reloadRows(at indexes: [Int])
     {
-        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
-                             with: .automatic)
+        guard let visibleRowsIndexPaths = tableView.indexPathsForVisibleRows else {return}
+        
+        tableView.reloadRows(at: visibleRowsIndexPaths, with: .automatic)
+//TODO: Find why it doesn't work (lock mainthread)
+//        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
+//                             with: .automatic)
     }
     
     func configure(with items: [CellItem])

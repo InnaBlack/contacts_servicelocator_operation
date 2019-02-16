@@ -79,12 +79,6 @@ extension ContactsInteractor: ContactsInteractorInput
     
     func reloadItems()
     {
-        notificationToken?.invalidate()
-        
-        loadService.sync
-            {[weak self] in
-            
-            self?.loadItems(with: self?.filterString)
-        }
+        loadService.sync(with: nil)
     }
 }
