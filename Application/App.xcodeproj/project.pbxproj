@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A847889518D298FCF39DD7E /* Pods_contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0B900292E1D4CB8227866D /* Pods_contacts.framework */; };
+		62BDC74622182BCA0058C7DE /* NSErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BDC74522182BCA0058C7DE /* NSErrorExtensions.swift */; };
 		B23AD43A22018228007EA3FE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD43922018228007EA3FE /* NetworkService.swift */; };
 		B23AD43F22018C06007EA3FE /* LocatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD43E22018C06007EA3FE /* LocatorService.swift */; };
 		B23AD44122019210007EA3FE /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AD44022019210007EA3FE /* DataBaseService.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		62BDC74522182BCA0058C7DE /* NSErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtensions.swift; sourceTree = "<group>"; };
 		77568970FD301DA008F7DC3F /* Pods-contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-contacts/Pods-contacts.debug.xcconfig"; sourceTree = "<group>"; };
 		813170841D9E8BC9A55F7D97 /* Pods-contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-contacts.release.xcconfig"; path = "../Pods/Target Support Files/Pods-contacts/Pods-contacts.release.xcconfig"; sourceTree = "<group>"; };
 		B23AD43922018228007EA3FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				B23D3F76220AD62400043985 /* TableData.swift */,
 				B23D3F79220AEEF400043985 /* SortDesc.swift */,
+				62BDC74522182BCA0058C7DE /* NSErrorExtensions.swift */,
 			);
 			name = Common;
 			path = "New Group";
@@ -436,6 +439,7 @@
 				B23AD43F22018C06007EA3FE /* LocatorService.swift in Sources */,
 				B23D3F9B221450B000043985 /* ContactInfoViewController.swift in Sources */,
 				B23D3F9A221450B000043985 /* ContactInfoViewInterface.swift in Sources */,
+				62BDC74622182BCA0058C7DE /* NSErrorExtensions.swift in Sources */,
 				B23D3F70220AD18A00043985 /* ContactsViewController.swift in Sources */,
 				B23D3F232208B80700043985 /* Contact.swift in Sources */,
 				B23D3F6E220AD18A00043985 /* ContactsPresenter.swift in Sources */,

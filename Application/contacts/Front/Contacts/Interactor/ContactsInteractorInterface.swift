@@ -27,4 +27,6 @@ protocol ContactsInteractorOutput: class
     func interactorNeedsInsert(rows :[Int])
     
     func interactorNeedsReload(rows :[Int])
+    
+    func interactorNeedsShowAlert(with text: String)
 }

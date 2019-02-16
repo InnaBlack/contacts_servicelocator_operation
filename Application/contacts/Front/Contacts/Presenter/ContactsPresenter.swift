@@ -24,11 +24,6 @@ extension ContactsPresenter: ContactsViewOutput
         interactor.loadItems(with: filterString)
     }
     
-    func viewDidPressOnBackButton()
-    {
-        router.closeModule(animated: true)
-    }
-    
     func viewDidPress(on item: CellItem)
     {
        router.openContactInfo(with: item.identifier)
@@ -79,6 +74,9 @@ extension ContactsPresenter: ContactsInteractorOutput
         userInterface?.reloadRows(at: rows)
     }
     
-
+    func interactorNeedsShowAlert(with text: String)
+    {
+        userInterface?.showToast(text)
+    }
 
 }

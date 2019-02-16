@@ -9,11 +9,8 @@
 import RealmSwift
 
 
-typealias simpleHandler = () -> Void
+typealias simpleHandler = (_ error: Error?) -> Void
 
-
-let syncInterval: TimeInterval = 60 // in seconds
-let lastLoadDateKey = "LastLoadDateKey"
 
 protocol LoadServiceInput
 {
@@ -29,6 +26,9 @@ protocol LoadServiceOutput
 
 class LoadService
 {
+    let syncInterval: TimeInterval = 60 // in seconds
+    let lastLoadDateKey = "LastLoadDateKey"
+    
     private let serverPath = "https://github.com/SkbkonturMobile/mobile-test-ios/blob/master/json/"
     private let query = "raw=true"
     private let resourceNames = ["generated-01.json",
@@ -44,7 +44,8 @@ class LoadService
     {
         get
         {
-            return UserDefaults().value(forKey: lastLoadDateKey) as? Date ?? Date.distantPast
+            let value = UserDefaults().value(forKey: lastLoadDateKey)
+            return  value as? Date ?? Date.distantPast
         }
         
         set
@@ -71,7 +72,8 @@ private extension LoadService
 {
     func start()
     {
-        if lastLoadDate.timeIntervalSinceNow > syncInterval
+        let lastLoadDateTimeIntervalSinseNow = Date().timeIntervalSince(lastLoadDate)
+        if lastLoadDateTimeIntervalSinseNow > syncInterval
         {
             sync(with: nil)
         }
@@ -105,6 +107,7 @@ extension LoadService: LoadServiceInput
 {
     func sync(with completion: simpleHandler?)
     {
+        var syncErrors = [Error]()
         var date = Date()
         LogService.log(.loadService, level: .time, message: "Start \(date)")
         
@@ -128,19 +131,23 @@ extension LoadService: LoadServiceInput
                 guard let requestURL = self.makeRequestUrl(for: resource) else {break}
                 
                 self.networkService.loadData(from: requestURL, completion:
-                    {[weak self] (resultData, errorCode) in
+                    {[weak self] (resultData, error) in
                         
                         if let someData = resultData, someData.count > 0
                         {
                             self?.contactsService.writeContacts(from: someData)
                         }
                         
+                        if let syncError = error
+                        {
+                            syncErrors.append(syncError)
+                        }
                         requestsGroup.leave()
                 })
             }
             
             //            requestsGroup.wait()
-            waitResult = requestsGroup.wait(timeout: .now() + syncInterval/2)
+            waitResult = requestsGroup.wait(timeout: .now() + 30)
             
             LogService.log(.loadService, level: .time, message: "End loading resources \(date.timeIntervalSinceNow) s")
             date = Date()
@@ -156,10 +163,26 @@ extension LoadService: LoadServiceInput
                     {
                         self?.lastLoadDate = Date()
                     }
+                    else
+                    {
+                        let error = NSError.init(code: 502, message: "Wait timeout")
+                        
+                        syncErrors.append(error)
+                    }
                     
                     if let syncCompletion = completion
                     {
-                        syncCompletion()
+                        if syncErrors.isEmpty
+                        {
+                            syncCompletion(nil)
+                        }
+                        else
+                        {
+                            for error in syncErrors
+                            {
+                                syncCompletion(error)
+                            }
+                        }
                     }
             }
         }

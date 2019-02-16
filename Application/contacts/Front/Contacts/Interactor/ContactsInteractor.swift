@@ -79,6 +79,14 @@ extension ContactsInteractor: ContactsInteractorInput
     
     func reloadItems()
     {
-        loadService.sync(with: nil)
+        loadService.sync(with:
+            {[weak self] (error) in
+           
+                guard let strongError = error else {return}
+                let loadError = strongError as NSError
+                
+                
+                self?.output.interactorNeedsShowAlert(with: loadError.localizedDescription)
+            })
     }
 }

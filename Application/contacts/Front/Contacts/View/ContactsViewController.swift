@@ -25,6 +25,8 @@ class ContactsViewController: UITableViewController
         configureRefreshControl()
         configureSearchBar()
         
+        self.navigationController?.view.makeToastActivity(.center)
+        
         output.viewDidReadyForEvents()
     }
 }
@@ -56,11 +58,6 @@ private extension ContactsViewController
     @objc func refreshContent()
     {
         output.viewDidStartRefresh()
-    }
-    
-    func didPressOnBackButton()
-    {
-        output.viewDidPressOnBackButton()
     }
     
     func configureSearchBar()
@@ -186,5 +183,14 @@ extension ContactsViewController: ContactsViewInput
         refreshControl?.endRefreshing()
         
         tableView.reloadData()
+        
+        self.navigationController?.view.hideToastActivity()
+    }
+    
+    func showToast(_ text: String)
+    {
+        refreshControl?.endRefreshing()
+        
+        self.navigationController?.view.makeToast(text)
     }
 }

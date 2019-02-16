@@ -20,14 +20,14 @@ protocol ContactsViewInput: class
     func insertRows(at: [Int])
     
     func reloadRows(at: [Int])
+    
+    func showToast(_ text: String)
 }
 
 
 protocol ContactsViewOutput: class
 {
     func viewDidReadyForEvents()
-    
-    func viewDidPressOnBackButton()
     
     func viewDidPress(on item: CellItem)
     
