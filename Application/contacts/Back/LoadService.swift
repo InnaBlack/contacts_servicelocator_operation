@@ -165,7 +165,7 @@ extension LoadService: LoadServiceInput
                     }
                     else
                     {
-                        let error = NSError.init(code: 502, message: "Wait timeout")
+                        let error = NSError.init(code: 502, message: "Нет подключения к сети")
                         
                         syncErrors.append(error)
                     }

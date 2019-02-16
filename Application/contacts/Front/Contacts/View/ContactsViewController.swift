@@ -171,7 +171,7 @@ extension ContactsViewController: ContactsViewInput
         guard let visibleRowsIndexPaths = tableView.indexPathsForVisibleRows else {return}
         
         tableView.reloadRows(at: visibleRowsIndexPaths, with: .automatic)
-//TODO: Find why it doesn't work (lock mainthread)
+//TODO: Find why it doesn't work (freeze mainthread)
 //        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
 //                             with: .automatic)
     }
