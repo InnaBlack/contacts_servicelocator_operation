@@ -167,12 +167,8 @@ extension ContactsViewController: ContactsViewInput
     
     func reloadRows(at indexes: [Int])
     {
-        guard let visibleRowsIndexPaths = tableView.indexPathsForVisibleRows else {return}
-        
-        tableView.reloadRows(at: visibleRowsIndexPaths, with: .automatic)
-//TODO: Find why it doesn't work (freeze mainthread)
-//        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
-//                             with: .automatic)
+        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
+                             with: .automatic)
     }
     
     func configure(with items: [CellItem])

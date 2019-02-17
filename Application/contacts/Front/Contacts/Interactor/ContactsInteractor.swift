@@ -52,28 +52,32 @@ extension ContactsInteractor: ContactsInteractorInput
             { [weak self] (changes) in
                 
                 let items = Array.init(resultContacts)
-                switch changes
-                {
-                case .initial:
-
-                    self?.output.interactorDidLoad(items: items)
-                    
-                case .update(_, let deletions, let insertions, let modifications):
-
-                    self?.output.interactorNeedsBeginUpdates()
-                    
-                    self?.output.interactorNeedsDelete(rows: deletions)
-                    
-                    self?.output.interactorNeedsInsert(rows: insertions)
-                    
-                    self?.output.interactorNeedsReload(rows: modifications)
-                    
-                    self?.output.interactorNeedsEndUpdate(items: items)
-                    
-                case .error(let err):
-                    
-                    fatalError("\(err)")
-                }
+                
+                self?.output.interactorDidLoad(items: items)
+                
+                //TODO: find why freeze UI on realm write update
+//                switch changes
+//                {
+//                case .initial:
+//
+//                    self?.output.interactorDidLoad(items: items)
+//
+//                case .update(_, let deletions, let insertions, let modifications):
+//
+//                    self?.output.interactorNeedsBeginUpdates()
+//
+//                    self?.output.interactorNeedsDelete(rows: deletions)
+//
+//                    self?.output.interactorNeedsInsert(rows: insertions)
+//
+//                    self?.output.interactorNeedsReload(rows: modifications)
+//
+//                    self?.output.interactorNeedsEndUpdate(items: items)
+//
+//                case .error(let err):
+//
+//                    fatalError("\(err)")
+//                }
         })
     }
     
