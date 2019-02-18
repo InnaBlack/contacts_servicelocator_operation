@@ -7,7 +7,6 @@
 //
 
 import RealmSwift
-import Foundation
 
 
 class DataBaseService

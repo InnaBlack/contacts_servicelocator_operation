@@ -50,7 +50,7 @@ private extension LocatorService
         LogService.log(.databaseService, level: .info, message: "did create")
     }
     
-    func makeContactService() -> ContactsService
+    func makeContactService() -> ContactsServiceInput
     {
         let service = ContactsService.init(databaseService: self.dataBaseService)
         LogService.log(.contactsService, level: .info, message: "did create")
@@ -58,7 +58,7 @@ private extension LocatorService
         return service
     }
     
-    func makeLoadService() -> LoadService
+    func makeLoadService() -> LoadServiceInput
     {
         
         let service = LoadService.init(networkService: self.networkService,

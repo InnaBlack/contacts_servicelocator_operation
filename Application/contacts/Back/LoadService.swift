@@ -14,7 +14,8 @@ typealias simpleHandler = (_ error: Error?) -> Void
 
 protocol LoadServiceInput
 {
-    func sync(with completion: simpleHandler?)
+    func sync(_ completion: simpleHandler?)
+    func syncIfNeed(_ completion: simpleHandler?)
 }
 
 
@@ -32,7 +33,7 @@ class LoadService
     
     private let networkService: NetworkService
     private let databaseService: DataBaseService
-    private let contactsService: ContactsService
+    private let contactsService: ContactsServiceInput
     
     private var lastLoadDate: Date
     {
@@ -50,28 +51,17 @@ class LoadService
     
     init(networkService: NetworkService,
          databaseService: DataBaseService,
-         contactsService: ContactsService)
+         contactsService: ContactsServiceInput)
     {
         self.networkService = networkService
         self.databaseService = databaseService
         self.contactsService = contactsService
-        
-        start()
     }
 }
 
 
 private extension LoadService
 {
-    func start()
-    {
-        let lastLoadDateTimeIntervalSinseNow = Date().timeIntervalSince(lastLoadDate)
-        if lastLoadDateTimeIntervalSinseNow > syncInterval
-        {
-            sync(with: nil)
-        }
-    }
-    
     func makeRequestUrl(for resource: String) -> URL?
     {
         let requestPath = serverPath + resource + "?" + query
@@ -98,7 +88,23 @@ private extension LoadService
 
 extension LoadService: LoadServiceInput
 {
-    func sync(with completion: simpleHandler?)
+    func syncIfNeed(_ completion: simpleHandler?)
+    {
+        let lastLoadDateTimeIntervalSinseNow = Date().timeIntervalSince(lastLoadDate)
+        
+        if lastLoadDateTimeIntervalSinseNow > syncInterval
+        {
+            sync(completion)
+        }
+        else if let syncCompletion = completion
+        {
+            let error = NSError.init(code: 200, message: "Данные уже были обновлены")
+            
+            syncCompletion(error)
+        }
+    }
+    
+    func sync(_ completion: simpleHandler?)
     {
         var syncErrors = [Error]()
         var date = Date()

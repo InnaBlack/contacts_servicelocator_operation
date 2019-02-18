@@ -30,13 +30,13 @@ class ContactInfoInteractor
 {
     weak var output: ContactInfoInteractorOutput!
     
-    var contactsService: ContactsService
+    var contactsService: ContactsServiceInput
     
     var contact: Contact?
     
     var notificationToken: NotificationToken?
     
-    init(contactsService: ContactsService)
+    init(contactsService: ContactsServiceInput)
     {
         self.contactsService = contactsService
     }

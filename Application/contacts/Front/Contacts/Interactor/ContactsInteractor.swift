@@ -23,15 +23,15 @@ class ContactsInteractor
 {
     weak var output: ContactsInteractorOutput!
     
-    var contactsService: ContactsService
+    var contactsService: ContactsServiceInput
     
-    var loadService: LoadService
+    var loadService: LoadServiceInput
     
     var filterString: String?
     
     var notificationToken: NotificationToken?
 
-    init(contactsService: ContactsService, loadService: LoadService)
+    init(contactsService: ContactsServiceInput, loadService: LoadServiceInput)
     {
         self.contactsService = contactsService
         
@@ -48,50 +48,30 @@ extension ContactsInteractor: ContactsInteractorInput
 {
     func loadItems(with filter: String?)
     {
-        let resultContacts = contactsService.readContacts(with: filter)
-        
-        notificationToken = resultContacts.observe(
-            { [weak self] (changes) in
+        loadService.syncIfNeed
+            {[weak self] (error) in
+
+                guard let resultContacts = self?.contactsService.readContacts(with: filter) else {return}
                 
-                let items = Array.init(resultContacts)
-                
-                self?.output.interactorDidLoad(items: items)
-                
-                //TODO: find why freeze UI on realm write update
-//                switch changes
-//                {
-//                case .initial:
-//
-//                    self?.output.interactorDidLoad(items: items)
-//
-//                case .update(_, let deletions, let insertions, let modifications):
-//
-//                    self?.output.interactorNeedsBeginUpdates()
-//
-//                    self?.output.interactorNeedsDelete(rows: deletions)
-//
-//                    self?.output.interactorNeedsInsert(rows: insertions)
-//
-//                    self?.output.interactorNeedsReload(rows: modifications)
-//
-//                    self?.output.interactorNeedsEndUpdate(items: items)
-//
-//                case .error(let err):
-//
-//                    fatalError("\(err)")
-//                }
-        })
+                self?.notificationToken = resultContacts.observe(
+                    { [weak self] (changes) in
+                        
+                        let items = Array.init(resultContacts)
+                        
+                        self?.output.interactorDidLoad(items: items)
+                })
+        }
     }
     
     func reloadItems()
     {
-        loadService.sync(with:
+        loadService.syncIfNeed
             {[weak self] (error) in
            
                 guard let strongError = error else {return}
                 let loadError = strongError as NSError
                 
                 self?.output.interactorNeedsShowAlert(with: loadError.localizedDescription)
-            })
+            }
     }
 }
