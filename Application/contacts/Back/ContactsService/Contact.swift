@@ -9,7 +9,7 @@
 import RealmSwift
 import Realm
 
-class Contact: RealmSwift.Object, Codable
+class Contact: RealmSwift.Object, Decodable
 {
     @objc dynamic var identifier: String = ""
     @objc dynamic var name: String = ""
@@ -33,20 +33,6 @@ class Contact: RealmSwift.Object, Codable
     enum EducationPeriodCodingKeys: String, CodingKey {
         case start
         case end
-    }
-    
-    enum Temperament: String
-    {
-        case undefined
-        case melancholic
-        case phlegmatic
-        case sanguine
-        case choleric
-        
-        init(from rawValue: String)
-        {
-            self = Temperament(rawValue: rawValue) ?? .undefined
-        }
     }
     
     required init(from decoder: Decoder) throws
@@ -77,22 +63,6 @@ class Contact: RealmSwift.Object, Codable
     
     required init(value: Any, schema: RLMSchema) {
         super.init(value: value, schema: schema)
-    }
-    
-    func encode(to encoder: Encoder) throws
-    {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(identifier, forKey: .identifier)
-        try container.encode(name, forKey: .name)
-        try container.encode(phoneNumber, forKey: .phoneNumber)
-        try container.encode(height, forKey: .height)
-        try container.encode(biography, forKey: .biography)
-        try container.encode(temperament, forKey: .temperament)
-        
-        let educationPeriodEncoder = container.superEncoder(forKey: .educationPeriod)
-        var educationPeriodContainer = educationPeriodEncoder.container(keyedBy: EducationPeriodCodingKeys.self)
-        try educationPeriodContainer.encode(educationStart, forKey: .start)
-        try educationPeriodContainer.encode(educationEnd, forKey: .end)
     }
     
     override class func primaryKey() -> String?
