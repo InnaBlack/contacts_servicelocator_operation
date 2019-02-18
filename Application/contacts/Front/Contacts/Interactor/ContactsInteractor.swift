@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-extension Contact: CellItem
+extension Contact: ContactItem
 {
     var title: String {return name}
     

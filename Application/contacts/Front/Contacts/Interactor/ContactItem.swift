@@ -6,7 +6,7 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-protocol CellItem
+protocol ContactItem
 {
     var identifier: String {get}
     var title: String {get}

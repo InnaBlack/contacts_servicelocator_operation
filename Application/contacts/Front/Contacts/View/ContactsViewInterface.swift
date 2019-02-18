@@ -9,11 +9,11 @@
 
 protocol ContactsViewInput: class
 {
-    func configure(with items: [CellItem])
+    func configure(with items: [ContactItem])
     
     func beginUpdates()
     
-    func endUpdates(with items: [CellItem])
+    func endUpdates(with items: [ContactItem])
     
     func deleteRows(at: [Int])
     
@@ -29,7 +29,7 @@ protocol ContactsViewOutput: class
 {
     func viewDidReadyForEvents()
     
-    func viewDidPress(on item: CellItem)
+    func viewDidPress(on item: ContactItem)
     
     func viewDidStartRefresh()
     

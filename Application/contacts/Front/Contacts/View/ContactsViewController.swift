@@ -15,7 +15,7 @@ class ContactsViewController: UITableViewController
 {
     var output: ContactsViewOutput!
 
-    private var items = [CellItem]()
+    private var items = [ContactItem]()
     
     override func viewDidLoad()
     {
@@ -144,7 +144,7 @@ extension ContactsViewController: ContactsViewInput
         tableView.beginUpdates()
     }
     
-    func endUpdates(with items: [CellItem])
+    func endUpdates(with items: [ContactItem])
     {
         refreshControl?.endRefreshing()
         
@@ -171,7 +171,7 @@ extension ContactsViewController: ContactsViewInput
                              with: .automatic)
     }
     
-    func configure(with items: [CellItem])
+    func configure(with items: [ContactItem])
     {
         self.items = items
         

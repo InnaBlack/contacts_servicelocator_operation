@@ -24,7 +24,7 @@ extension ContactsPresenter: ContactsViewOutput
         interactor.loadItems(with: filterString)
     }
     
-    func viewDidPress(on item: CellItem)
+    func viewDidPress(on item: ContactItem)
     {
        router.openContactInfo(with: item.identifier)
     }
@@ -44,7 +44,7 @@ extension ContactsPresenter: ContactsViewOutput
 
 extension ContactsPresenter: ContactsInteractorOutput
 {
-    func interactorDidLoad(items: [CellItem])
+    func interactorDidLoad(items: [ContactItem])
     {
         userInterface?.configure(with: items)
     }
@@ -54,7 +54,7 @@ extension ContactsPresenter: ContactsInteractorOutput
         userInterface?.beginUpdates()
     }
     
-    func interactorNeedsEndUpdate(items: [CellItem])
+    func interactorNeedsEndUpdate(items: [ContactItem])
     {
         userInterface?.endUpdates(with: items)
     }

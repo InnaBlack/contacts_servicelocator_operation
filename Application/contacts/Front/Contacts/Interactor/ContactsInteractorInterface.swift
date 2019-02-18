@@ -16,11 +16,11 @@ protocol ContactsInteractorInput: class
 
 protocol ContactsInteractorOutput: class
 {
-    func interactorDidLoad(items: [CellItem])
+    func interactorDidLoad(items: [ContactItem])
     
     func interactorNeedsBeginUpdates()
     
-    func interactorNeedsEndUpdate(items: [CellItem])
+    func interactorNeedsEndUpdate(items: [ContactItem])
     
     func interactorNeedsDelete(rows :[Int])
     
