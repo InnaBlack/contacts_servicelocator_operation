@@ -36,14 +36,9 @@ private extension ContactInfoViewController
     func configureController()
     {
         title = "Details"
-        self.navigationController?.navigationItem.largeTitleDisplayMode = .never
+        navigationItem.largeTitleDisplayMode = .never
         
         callButton.addTarget(self, action: #selector(didPressOnCallButton), for: .touchUpInside)
-    }
-    
-    func didPressOnBackButton()
-    {
-        output.viewDidPressOnBackButton()
     }
     
     @objc func didPressOnCallButton()

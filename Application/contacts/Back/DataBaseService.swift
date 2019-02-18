@@ -9,6 +9,7 @@
 import RealmSwift
 import Foundation
 
+
 class DataBaseService
 {
     var readRealm: Realm!
@@ -25,15 +26,14 @@ class DataBaseService
     }
 }
 
+
 private extension DataBaseService
 {
     func makeContactConfiguration(readOnly: Bool) -> Realm.Configuration
     {
         let config = Realm.Configuration(
             fileURL: contactsFileUrl(),
-            readOnly: readOnly,
-            schemaVersion: 1,
-            deleteRealmIfMigrationNeeded: false)
+            schemaVersion: 1)
         return config
     }
     
@@ -41,37 +41,5 @@ private extension DataBaseService
     {
         guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return nil}
         return directory.appendingPathComponent("contacts.realm")
-    }
-    
-    func shouldCompact() -> (Int,Int) -> Bool
-    {
-        return
-            {totalBytes, usedBytes in
-            
-                let mbSize = 20 * 1024 * 1024
-                return (totalBytes > mbSize) && (Double(usedBytes) / Double(totalBytes)) < 1/2
-            }
-    }
-}
-
-extension Realm {
-    func writeAsync<T : ThreadConfined>(obj: T, errorHandler: @escaping ((_ error : Swift.Error) -> Void) = { _ in return }, block: @escaping ((Realm, T?) -> Void)) {
-        let wrappedObj = ThreadSafeReference(to: obj)
-        let config = self.configuration
-        DispatchQueue(label: "background").async {
-            autoreleasepool {
-                do {
-                    let realm = try Realm(configuration: config)
-                    let obj = realm.resolve(wrappedObj)
-                    
-                    try realm.write {
-                        block(realm, obj)
-                    }
-                }
-                catch {
-                    errorHandler(error)
-                }
-            }
-        }
     }
 }

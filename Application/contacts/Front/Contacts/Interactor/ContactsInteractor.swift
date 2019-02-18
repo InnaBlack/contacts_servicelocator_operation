@@ -8,6 +8,7 @@
 
 import RealmSwift
 
+
 extension Contact: ContactItem
 {
     var title: String {return name}
@@ -16,6 +17,7 @@ extension Contact: ContactItem
     
     var detail: String {return temperament}
 }
+
 
 class ContactsInteractor
 {
@@ -88,7 +90,6 @@ extension ContactsInteractor: ContactsInteractorInput
            
                 guard let strongError = error else {return}
                 let loadError = strongError as NSError
-                
                 
                 self?.output.interactorNeedsShowAlert(with: loadError.localizedDescription)
             })

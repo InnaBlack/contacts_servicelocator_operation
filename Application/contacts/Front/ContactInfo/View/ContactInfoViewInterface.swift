@@ -16,7 +16,5 @@ protocol ContactInfoViewOutput: class
 {
     func viewDidReadyForEvents()
     
-    func viewDidPressOnBackButton()
-    
     func viewDidPressOnCallButton()
 }

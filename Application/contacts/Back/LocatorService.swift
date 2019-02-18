@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class LocatorService
 {
     static let current = LocatorService()
@@ -21,6 +22,7 @@ class LocatorService
     lazy var rootWindowService = makeRootWindowService()
     
     lazy var contactsStoryboard = makeContactStoryboard()
+    
     init()
     {
         initEarlyServices()
@@ -32,6 +34,7 @@ class LocatorService
         initDataBaseService()
     }
 }
+
 
 private extension LocatorService
 {

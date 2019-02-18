@@ -18,12 +18,6 @@ protocol LoadServiceInput
 }
 
 
-protocol LoadServiceOutput
-{
-
-}
-
-
 class LoadService
 {
     let syncInterval: TimeInterval = 60 // in seconds
@@ -53,7 +47,6 @@ class LoadService
           UserDefaults().set(newValue, forKey: lastLoadDateKey)
         }
     }
-    private var syncTimer: Timer?
     
     init(networkService: NetworkService,
          databaseService: DataBaseService,

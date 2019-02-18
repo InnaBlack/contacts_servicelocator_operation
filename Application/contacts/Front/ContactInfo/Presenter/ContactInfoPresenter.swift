@@ -14,6 +14,7 @@ protocol ContactInfoModuleInput
     func configure(with identifier: String)
 }
 
+
 class ContactInfoPresenter
 {
     weak var userInterface: ContactInfoViewInput?
@@ -41,11 +42,6 @@ extension ContactInfoPresenter: ContactInfoViewOutput
         {
             interactor.configure(with: contactId)
         }
-    }
-    
-    func viewDidPressOnBackButton()
-    {
-        router.closeModule(animated: true)
     }
     
     func viewDidPressOnCallButton()

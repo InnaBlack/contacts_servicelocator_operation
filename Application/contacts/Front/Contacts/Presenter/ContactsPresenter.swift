@@ -78,5 +78,4 @@ extension ContactsPresenter: ContactsInteractorOutput
     {
         userInterface?.showToast(text)
     }
-
 }

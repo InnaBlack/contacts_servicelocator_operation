@@ -10,8 +10,6 @@ import Foundation
 
 
 protocol ContactInfoRouterInput: class
-{
-    func closeModule(animated: Bool)
-    
+{    
     func goTo(externalLink: URL)
 }

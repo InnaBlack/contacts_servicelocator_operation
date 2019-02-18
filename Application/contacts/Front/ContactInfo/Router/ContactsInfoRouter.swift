@@ -16,12 +16,7 @@ class ContactInfoRouter
 
 
 extension ContactInfoRouter: ContactInfoRouterInput
-{
-    func closeModule(animated: Bool)
-    {
-        viewController.navigationController?.popViewController(animated: animated)
-    }
-    
+{    
     func goTo(externalLink: URL)
     {
         if UIApplication.shared.canOpenURL(externalLink)

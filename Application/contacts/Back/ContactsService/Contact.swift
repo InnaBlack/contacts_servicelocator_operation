@@ -9,6 +9,7 @@
 import RealmSwift
 import Realm
 
+
 class Contact: RealmSwift.Object, Decodable
 {
     @objc dynamic var identifier: String = ""

@@ -6,7 +6,6 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 
@@ -15,12 +14,6 @@ protocol RootWindowInput
     func show(viewController: UIViewController)
     
     func push(viewController: UIViewController)
-}
-
-
-protocol RootWindowOutput
-{
-    
 }
 
 
@@ -56,9 +49,3 @@ extension RootWindowService: RootWindowInput
         window.makeKeyAndVisible()
     }
 }
-
-private extension RootWindowService
-{
-    
-}
-
