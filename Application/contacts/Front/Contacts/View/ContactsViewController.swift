@@ -17,6 +17,8 @@ class ContactsViewController: UITableViewController
 
     private var items = [ContactItem]()
     
+    private var searchActive = true
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -37,6 +39,7 @@ private extension ContactsViewController
     func configureController()
     {
         title = "Contacts"
+        definesPresentationContext = true
     }
     
     func configureRefreshControl()
@@ -63,9 +66,12 @@ private extension ContactsViewController
     {
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
+        search.searchBar.placeholder = "Search by name or phone"
+        search.obscuresBackgroundDuringPresentation = false
         self.navigationItem.searchController = search
     }
 }
+
 
 extension ContactsViewController: UISearchResultsUpdating
 {
