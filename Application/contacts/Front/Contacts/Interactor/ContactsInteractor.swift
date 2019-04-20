@@ -46,19 +46,33 @@ class ContactsInteractor
 
 extension ContactsInteractor: ContactsInteractorInput
 {
-    func loadItems(with filter: String?)
+    func loadItems()
     {
         loadService.syncIfNeed
             {[weak self] (error) in
 
-                guard let resultContacts = self?.contactsService.readContacts(with: filter) else {return}
+                guard var resultContacts = self?.contactsService.readContacts(with: self?.filterString) else {return}
                 
                 self?.notificationToken = resultContacts.observe(
                     { [weak self] (changes) in
                         
-                        let items = Array.init(resultContacts)
+                        guard let self = self else {return}
                         
-                        self?.output.interactorDidLoad(items: items)
+                        switch changes
+                        {
+                        case .initial:
+                            let items = Array.init(resultContacts)
+                            self.output.interactorDidLoad(items: items)
+                            
+                        case .update(_, _, _, _):
+                            resultContacts = self.contactsService.readContacts(with: self.filterString)
+                            let items = Array.init(resultContacts)
+                            self.output.interactorDidLoad(items: items)
+                            
+                        case .error(let error):
+                            let loadError = error as NSError
+                            self.output.interactorNeedsShowAlert(with: loadError.localizedDescription)
+                        }
                 })
         }
     }
@@ -73,5 +87,10 @@ extension ContactsInteractor: ContactsInteractorInput
                 
                 self?.output.interactorNeedsShowAlert(with: loadError.localizedDescription)
             }
+    }
+    
+    func update(filter: String?)
+    {
+        filterString = filter
     }
 }

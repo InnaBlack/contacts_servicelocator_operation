@@ -21,7 +21,7 @@ extension ContactsPresenter: ContactsViewOutput
 {
     func viewDidReadyForEvents()
     {
-        interactor.loadItems(with: filterString)
+        interactor.loadItems()
     }
     
     func viewDidPress(on item: ContactItem)
@@ -36,8 +36,8 @@ extension ContactsPresenter: ContactsViewOutput
     
     func viewDidChangeFilter(value: String?)
     {
-        filterString = value
-        interactor.loadItems(with: filterString)
+        interactor.update(filter: value)
+        interactor.loadItems()
     }
 }
 

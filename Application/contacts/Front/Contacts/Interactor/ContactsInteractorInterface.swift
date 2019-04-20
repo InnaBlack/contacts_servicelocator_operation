@@ -8,7 +8,9 @@
 
 protocol ContactsInteractorInput: class
 {
-    func loadItems(with filter: String?)
+    func update(filter: String?)
+    
+    func loadItems()
     
     func reloadItems()
 }
