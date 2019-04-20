@@ -67,22 +67,6 @@ private extension LoadService
         let requestPath = serverPath + resource + "?" + query
         return URL.init(string: requestPath)
     }
-    
-    func objectsList(from data: Data) -> [Any]?
-    {
-        do{
-            let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
-            
-            guard let objectsList = jsonObject as? [Any]
-                else {return[]}
-            
-            return objectsList
-        }
-        catch
-        {
-            return nil
-        }
-    }
 }
 
 
@@ -98,7 +82,7 @@ extension LoadService: LoadServiceInput
         }
         else if let syncCompletion = completion
         {
-            let error = NSError.init(code: 200, message: "Данные уже были обновлены")
+            let error = NSError.init(code: 200, message: "Already updated")
             
             syncCompletion(error)
         }
@@ -164,7 +148,7 @@ extension LoadService: LoadServiceInput
                     }
                     else
                     {
-                        let error = NSError.init(code: 502, message: "Нет подключения к сети")
+                        let error = NSError.init(code: 502, message: "Connection error")
                         
                         syncErrors.append(error)
                     }
