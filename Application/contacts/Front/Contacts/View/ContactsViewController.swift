@@ -192,6 +192,8 @@ extension ContactsViewController: ContactsViewInput
     {
         refreshControl?.endRefreshing()
         
+        self.navigationController?.view.hideAllToasts()
+        
         self.navigationController?.view.makeToast(text)
     }
 }
