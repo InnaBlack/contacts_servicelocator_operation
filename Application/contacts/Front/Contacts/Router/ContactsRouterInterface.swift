@@ -6,8 +6,7 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-protocol ContactsRouterInput: class
-{
+protocol ContactsRouterInput: class {
     func closeModule(animated: Bool)
     
     func openContactInfo(with identifier: String)

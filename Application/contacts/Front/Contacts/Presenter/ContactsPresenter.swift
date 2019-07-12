@@ -7,8 +7,7 @@
 //
 
 
-class ContactsPresenter
-{
+class ContactsPresenter {
     weak var userInterface: ContactsViewInput?
     var interactor: ContactsInteractorInput!
     var router: ContactsRouterInput!
@@ -17,65 +16,52 @@ class ContactsPresenter
 }
 
 
-extension ContactsPresenter: ContactsViewOutput
-{
-    func viewDidReadyForEvents()
-    {
+extension ContactsPresenter: ContactsViewOutput {
+    func viewDidReadyForEvents() {
         interactor.loadItems()
     }
     
-    func viewDidPress(on item: ContactItem)
-    {
-       router.openContactInfo(with: item.identifier)
+    func viewDidPress(on item: ContactItem) {
+        router.openContactInfo(with: item.identifier)
     }
     
-    func viewDidStartRefresh()
-    {
+    func viewDidStartRefresh() {
         interactor.reloadItems()
     }
     
-    func viewDidChangeFilter(value: String?)
-    {
+    func viewDidChangeFilter(value: String?) {
         interactor.update(filter: value)
         interactor.loadItems()
     }
 }
 
 
-extension ContactsPresenter: ContactsInteractorOutput
-{
-    func interactorDidLoad(items: [ContactItem])
-    {
+extension ContactsPresenter: ContactsInteractorOutput {
+    func interactorDidLoad(items: [ContactItem]) {
         userInterface?.configure(with: items)
     }
     
-    func interactorNeedsBeginUpdates()
-    {
+    func interactorNeedsBeginUpdates() {
         userInterface?.beginUpdates()
     }
     
-    func interactorNeedsEndUpdate(items: [ContactItem])
-    {
+    func interactorNeedsEndUpdate(items: [ContactItem]) {
         userInterface?.endUpdates(with: items)
     }
     
-    func interactorNeedsDelete(rows: [Int])
-    {
+    func interactorNeedsDelete(rows: [Int]) {
         userInterface?.deleteRows(at: rows)
     }
     
-    func interactorNeedsInsert(rows: [Int])
-    {
+    func interactorNeedsInsert(rows: [Int]) {
         userInterface?.insertRows(at: rows)
     }
     
-    func interactorNeedsReload(rows: [Int])
-    {
+    func interactorNeedsReload(rows: [Int]) {
         userInterface?.reloadRows(at: rows)
     }
     
-    func interactorNeedsShowAlert(with text: String)
-    {
+    func interactorNeedsShowAlert(with text: String) {
         userInterface?.showToast(text)
     }
 }

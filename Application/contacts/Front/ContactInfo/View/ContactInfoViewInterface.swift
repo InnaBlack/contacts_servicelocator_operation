@@ -6,14 +6,12 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-protocol ContactInfoViewInput: class
-{
+protocol ContactInfoViewInput: class {
     func configure(with item: ContactInfoItem)
 }
 
 
-protocol ContactInfoViewOutput: class
-{
+protocol ContactInfoViewOutput: class {
     func viewDidReadyForEvents()
     
     func viewDidPressOnCallButton()

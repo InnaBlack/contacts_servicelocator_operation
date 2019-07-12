@@ -9,15 +9,13 @@
 import RealmSwift
 
 
-protocol ContactInfoInteractorInput: class
-{
+protocol ContactInfoInteractorInput: class {
     func configure(with contactId: String)
     
     func urlForCall() -> URL?
 }
 
 
-protocol ContactInfoInteractorOutput: class
-{
+protocol ContactInfoInteractorOutput: class {
     func interactorDidLoad(item: ContactInfoItem)
 }

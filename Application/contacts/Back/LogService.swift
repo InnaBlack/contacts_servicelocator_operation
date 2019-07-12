@@ -9,8 +9,7 @@
 import Foundation
 
 
-enum ServiceName
-{
+enum ServiceName {
     case networkService
     case databaseService
     case loadService
@@ -21,18 +20,15 @@ enum ServiceName
 }
 
 
-enum EventLevel
-{
+enum EventLevel {
     case info
     case error
     case time
 }
 
 
-class LogService
-{
-    static func log(_ service: ServiceName,level: EventLevel, message: String)
-    {
+class LogService {
+    static func log(_ service: ServiceName,level: EventLevel, message: String) {
         print("[\(service)] [\(level)] - \(message)")
     }
 }

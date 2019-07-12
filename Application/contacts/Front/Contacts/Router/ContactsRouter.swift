@@ -9,21 +9,17 @@
 import UIKit
 
 
-class ContactsRouter
-{
+class ContactsRouter {
     weak var viewController: UIViewController!
 }
 
 
-extension ContactsRouter: ContactsRouterInput
-{
-    func closeModule(animated: Bool)
-    {
+extension ContactsRouter: ContactsRouterInput {
+    func closeModule(animated: Bool) {
         viewController.navigationController?.popViewController(animated: animated)
     }
     
-    func openContactInfo(with identifier: String)
-    {
+    func openContactInfo(with identifier: String) {
         let infoVC = ContactInfoAssembly().viewContactInfoModule()
         
         infoVC.input.configure(with: identifier)

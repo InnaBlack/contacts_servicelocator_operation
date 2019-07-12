@@ -7,8 +7,7 @@
 //
 
 
-protocol ContactsViewInput: class
-{
+protocol ContactsViewInput: class {
     func configure(with items: [ContactItem])
     
     func beginUpdates()
@@ -25,8 +24,7 @@ protocol ContactsViewInput: class
 }
 
 
-protocol ContactsViewOutput: class
-{
+protocol ContactsViewOutput: class {
     func viewDidReadyForEvents()
     
     func viewDidPress(on item: ContactItem)

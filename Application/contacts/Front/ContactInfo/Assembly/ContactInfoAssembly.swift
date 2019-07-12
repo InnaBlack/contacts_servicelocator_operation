@@ -8,10 +8,8 @@
 
 import UIKit
 
-class ContactInfoAssembly
-{
-    func viewContactInfoModule() -> ContactInfoViewController
-    {
+class ContactInfoAssembly {
+    func viewContactInfoModule() -> ContactInfoViewController {
         let locator = LocatorService.current
         
         guard let vc = locator.contactsStoryboard.instantiateViewController(withIdentifier: "ContactInfo") as? ContactInfoViewController

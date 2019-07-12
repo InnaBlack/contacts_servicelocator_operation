@@ -8,26 +8,22 @@
 
 import RealmSwift
 
-extension Contact: ContactInfoItem
-{
+extension Contact: ContactInfoItem {
     
-    var educationPeriod: String
-    {
+    var educationPeriod: String {
         let startDay = dateFormatter().string(from: educationStart)
         let endDay = dateFormatter().string(from: educationEnd)
         return "\(startDay) - \(endDay)"
     }
     
-    func dateFormatter() -> DateFormatter
-    {
+    func dateFormatter() -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }
 }
 
-class ContactInfoInteractor
-{
+class ContactInfoInteractor {
     weak var output: ContactInfoInteractorOutput!
     
     var contactsService: ContactsServiceInput
@@ -36,22 +32,18 @@ class ContactInfoInteractor
     
     var notificationToken: NotificationToken?
     
-    init(contactsService: ContactsServiceInput)
-    {
+    init(contactsService: ContactsServiceInput) {
         self.contactsService = contactsService
     }
     
-    deinit
-    {
+    deinit {
         notificationToken?.invalidate()
     }
 }
 
 
-extension ContactInfoInteractor: ContactInfoInteractorInput
-{
-    func configure(with contactId: String)
-    {
+extension ContactInfoInteractor: ContactInfoInteractorInput {
+    func configure(with contactId: String) {
         if let contact = contactsService.readContact(with: contactId)
         {
             self.contact = contact
@@ -59,8 +51,7 @@ extension ContactInfoInteractor: ContactInfoInteractorInput
         }
     }
     
-    func urlForCall() -> URL?
-    {
+    func urlForCall() -> URL? {
         guard let contactPhone = contact?.phoneNumber else {return nil}
         
         let contactPhoneNumbers = contactPhone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()

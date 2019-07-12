@@ -9,8 +9,7 @@
 import UIKit
 
 
-class ContactInfoViewController: UIViewController
-{
+class ContactInfoViewController: UIViewController {
     var output: ContactInfoViewOutput!
     var input: ContactInfoModuleInput!
     
@@ -21,8 +20,7 @@ class ContactInfoViewController: UIViewController
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var biographyLabel: UILabel!
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         configureController()
@@ -31,27 +29,22 @@ class ContactInfoViewController: UIViewController
 }
 
 
-private extension ContactInfoViewController
-{
-    func configureController()
-    {
+private extension ContactInfoViewController {
+    func configureController() {
         title = "Details"
         navigationItem.largeTitleDisplayMode = .never
         
         callButton.addTarget(self, action: #selector(didPressOnCallButton), for: .touchUpInside)
     }
     
-    @objc func didPressOnCallButton()
-    {
+    @objc func didPressOnCallButton() {
         output.viewDidPressOnCallButton()
     }
 }
 
 
-extension ContactInfoViewController: ContactInfoViewInput
-{
-    func configure(with item: ContactInfoItem)
-    {
+extension ContactInfoViewController: ContactInfoViewInput {
+    func configure(with item: ContactInfoItem) {
         nameLabel.text = item.name
         periodLabel.text = item.educationPeriod
         temperamentLabel.text = item.temperament

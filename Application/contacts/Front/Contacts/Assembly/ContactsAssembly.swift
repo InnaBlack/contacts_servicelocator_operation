@@ -9,12 +9,10 @@
 import UIKit
 
 
-class ContactsAssembly
-{
-    func viewContactsModule() -> ContactsViewController
-    {
+class ContactsAssembly {
+    func viewContactsModule() -> ContactsViewController {
         let locator = LocatorService.current
-    
+        
         let interactor =
             ContactsInteractor.init(contactsService: locator.contactsService,
                                     loadService: locator.loadService)

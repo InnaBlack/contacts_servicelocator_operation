@@ -9,16 +9,14 @@
 import UIKit
 
 
-class ContactInfoRouter
-{
+class ContactInfoRouter {
     weak var viewController: UIViewController!
 }
 
 
 extension ContactInfoRouter: ContactInfoRouterInput
 {    
-    func goTo(externalLink: URL)
-    {
+    func goTo(externalLink: URL) {
         if UIApplication.shared.canOpenURL(externalLink)
         {
             UIApplication.shared.open(externalLink)

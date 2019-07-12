@@ -8,29 +8,24 @@
 
 import Foundation
 
-class TableSection
-{
+class TableSection {
     let items: [Any]
     let title: String
     
-    init(items: [Any], title: String = "")
-    {
+    init(items: [Any], title: String = "") {
         self.items = items
         self.title = title
     }
 }
 
-class TableData
-{
+class TableData {
     var sections: [TableSection]
     
-    init(sections: [TableSection])
-    {
+    init(sections: [TableSection]) {
         self.sections = sections
     }
     
-    func numberOfItems() -> Int
-    {
+    func numberOfItems() -> Int {
         var count = 0
         
         for section in sections
@@ -41,8 +36,7 @@ class TableData
         return count
     }
     
-    func item(for indexPath: IndexPath) -> Any?
-    {
+    func item(for indexPath: IndexPath) -> Any? {
         guard indexPath.section < sections.count else {return nil}
         let section = sections[indexPath.section]
         

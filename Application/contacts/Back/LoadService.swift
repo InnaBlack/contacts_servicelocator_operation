@@ -12,15 +12,13 @@ import RealmSwift
 typealias simpleHandler = (_ error: Error?) -> Void
 
 
-protocol LoadServiceInput
-{
+protocol LoadServiceInput {
     func sync(_ completion: simpleHandler?)
     func syncIfNeed(_ completion: simpleHandler?)
 }
 
 
-class LoadService
-{
+class LoadService {
     let syncInterval: TimeInterval = 60 // in seconds
     let lastLoadDateKey = "LastLoadDateKey"
     
@@ -35,8 +33,7 @@ class LoadService
     private let databaseService: DataBaseService
     private let contactsService: ContactsServiceInput
     
-    private var lastLoadDate: Date
-    {
+    private var lastLoadDate: Date {
         get
         {
             let value = UserDefaults().value(forKey: lastLoadDateKey)
@@ -45,14 +42,13 @@ class LoadService
         
         set
         {
-          UserDefaults().set(newValue, forKey: lastLoadDateKey)
+            UserDefaults().set(newValue, forKey: lastLoadDateKey)
         }
     }
     
     init(networkService: NetworkService,
          databaseService: DataBaseService,
-         contactsService: ContactsServiceInput)
-    {
+         contactsService: ContactsServiceInput) {
         self.networkService = networkService
         self.databaseService = databaseService
         self.contactsService = contactsService
@@ -60,20 +56,16 @@ class LoadService
 }
 
 
-private extension LoadService
-{
-    func makeRequestUrl(for resource: String) -> URL?
-    {
+private extension LoadService {
+    func makeRequestUrl(for resource: String) -> URL? {
         let requestPath = serverPath + resource + "?" + query
         return URL.init(string: requestPath)
     }
 }
 
 
-extension LoadService: LoadServiceInput
-{
-    func syncIfNeed(_ completion: simpleHandler?)
-    {
+extension LoadService: LoadServiceInput {
+    func syncIfNeed(_ completion: simpleHandler?) {
         let lastLoadDateTimeIntervalSinseNow = Date().timeIntervalSince(lastLoadDate)
         
         if lastLoadDateTimeIntervalSinseNow > syncInterval
@@ -88,8 +80,7 @@ extension LoadService: LoadServiceInput
         }
     }
     
-    func sync(_ completion: simpleHandler?)
-    {
+    func sync(_ completion: simpleHandler?) {
         var syncErrors = [Error]()
         var date = Date()
         LogService.log(.loadService, level: .time, message: "Start \(date)")

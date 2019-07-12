@@ -10,8 +10,7 @@ import RealmSwift
 import Realm
 
 
-class Contact: RealmSwift.Object, Decodable
-{
+class Contact: RealmSwift.Object, Decodable {
     @objc dynamic var identifier: String = ""
     @objc dynamic var name: String = ""
     @objc dynamic var phoneNumber: String = ""
@@ -36,8 +35,7 @@ class Contact: RealmSwift.Object, Decodable
         case end
     }
     
-    required init(from decoder: Decoder) throws
-    {
+    required init(from decoder: Decoder) throws {
         super.init()
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -66,8 +64,7 @@ class Contact: RealmSwift.Object, Decodable
         super.init(value: value, schema: schema)
     }
     
-    override class func primaryKey() -> String?
-    {
+    override class func primaryKey() -> String? {
         return "identifier"
     }
 }

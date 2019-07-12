@@ -9,7 +9,6 @@
 import Foundation
 
 
-protocol ContactInfoRouterInput: class
-{    
+protocol ContactInfoRouterInput: class {    
     func goTo(externalLink: URL)
 }

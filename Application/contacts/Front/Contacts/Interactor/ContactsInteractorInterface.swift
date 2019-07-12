@@ -6,8 +6,7 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-protocol ContactsInteractorInput: class
-{
+protocol ContactsInteractorInput: class {
     func update(filter: String?)
     
     func loadItems()
@@ -16,8 +15,7 @@ protocol ContactsInteractorInput: class
 }
 
 
-protocol ContactsInteractorOutput: class
-{
+protocol ContactsInteractorOutput: class {
     func interactorDidLoad(items: [ContactItem])
     
     func interactorNeedsBeginUpdates()

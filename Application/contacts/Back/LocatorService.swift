@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 
-class LocatorService
-{
+class LocatorService {
     static let current = LocatorService()
     
     var networkService: NetworkService!
@@ -23,62 +22,53 @@ class LocatorService
     
     lazy var contactsStoryboard = makeContactStoryboard()
     
-    init()
-    {
+    init() {
         initEarlyServices()
     }
-
-    func initEarlyServices()
-    {
+    
+    func initEarlyServices() {
         initNetworkService()
         initDataBaseService()
     }
 }
 
 
-private extension LocatorService
-{
-    func initNetworkService()
-    {
+private extension LocatorService {
+    func initNetworkService() {
         networkService = NetworkService()
         LogService.log(.networkService, level: .info, message: "did create")
     }
     
-    func initDataBaseService()
-    {
+    func initDataBaseService() {
         dataBaseService = DataBaseService()
         LogService.log(.databaseService, level: .info, message: "did create")
     }
     
-    func makeContactService() -> ContactsServiceInput
-    {
+    func makeContactService() -> ContactsServiceInput {
         let service = ContactsService.init(databaseService: self.dataBaseService)
         LogService.log(.contactsService, level: .info, message: "did create")
         
         return service
     }
     
-    func makeLoadService() -> LoadServiceInput
-    {
+    func makeLoadService() -> LoadServiceInput {
         
         let service = LoadService.init(networkService: self.networkService,
-                                databaseService: self.dataBaseService,
-                                contactsService: self.contactsService)
+                                       databaseService: self.dataBaseService,
+                                       contactsService: self.contactsService)
         LogService.log(.loadService, level: .info, message: "did create")
         
         return service
     }
     
-    func makeRootWindowService() -> RootWindowInput
-    {
+    func makeRootWindowService() -> RootWindowInput {
         let service =  RootWindowService()
         LogService.log(.rootWindowService, level: .info, message: "did create")
         
         return service
     }
     
-    func makeContactStoryboard() -> UIStoryboard
-    {
+    func makeContactStoryboard() -> UIStoryboard {
         return UIStoryboard.init(name: "ContactsSB", bundle: Bundle.main)
     }
 }

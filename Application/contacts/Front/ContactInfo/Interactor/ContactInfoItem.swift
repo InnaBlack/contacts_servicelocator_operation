@@ -6,8 +6,7 @@
 //  Copyright © 2019 Nikolay Gladkovskiy. All rights reserved.
 //
 
-protocol ContactInfoItem
-{
+protocol ContactInfoItem {
     var identifier: String {get}
     var name: String {get}
     var phoneNumber: String {get}

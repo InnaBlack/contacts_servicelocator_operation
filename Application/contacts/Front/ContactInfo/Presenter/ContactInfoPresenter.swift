@@ -9,14 +9,12 @@
 import RealmSwift
 
 
-protocol ContactInfoModuleInput
-{
+protocol ContactInfoModuleInput {
     func configure(with identifier: String)
 }
 
 
-class ContactInfoPresenter
-{
+class ContactInfoPresenter {
     weak var userInterface: ContactInfoViewInput?
     var interactor: ContactInfoInteractorInput!
     var router: ContactInfoRouterInput!
@@ -25,27 +23,22 @@ class ContactInfoPresenter
 }
 
 
-extension ContactInfoPresenter: ContactInfoModuleInput
-{
-    func configure(with identifier: String)
-    {
+extension ContactInfoPresenter: ContactInfoModuleInput {
+    func configure(with identifier: String) {
         self.identifier = identifier
     }
 }
 
 
-extension ContactInfoPresenter: ContactInfoViewOutput
-{
-    func viewDidReadyForEvents()
-    {
+extension ContactInfoPresenter: ContactInfoViewOutput {
+    func viewDidReadyForEvents() {
         if let contactId = identifier
         {
             interactor.configure(with: contactId)
         }
     }
     
-    func viewDidPressOnCallButton()
-    {
+    func viewDidPressOnCallButton() {
         if let externalLink = interactor.urlForCall()
         {
             router.goTo(externalLink: externalLink)
@@ -54,11 +47,9 @@ extension ContactInfoPresenter: ContactInfoViewOutput
 }
 
 
-extension ContactInfoPresenter: ContactInfoInteractorOutput
-{
-    func interactorDidLoad(item: ContactInfoItem)
-    {
+extension ContactInfoPresenter: ContactInfoInteractorOutput {
+    func interactorDidLoad(item: ContactInfoItem) {
         userInterface?.configure(with: item)
     }
-
+    
 }

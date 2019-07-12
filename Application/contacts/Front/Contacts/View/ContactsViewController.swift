@@ -11,16 +11,14 @@ import Toast_Swift
 
 let cellReuseIdentifier = "DetailedCell"
 
-class ContactsViewController: UITableViewController
-{
+class ContactsViewController: UITableViewController {
     var output: ContactsViewOutput!
-
+    
     private var items = [ContactItem]()
     
     private var searchActive = true
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         configureController()
@@ -34,16 +32,13 @@ class ContactsViewController: UITableViewController
 }
 
 
-private extension ContactsViewController
-{
-    func configureController()
-    {
+private extension ContactsViewController {
+    func configureController() {
         title = "Contacts"
         definesPresentationContext = true
     }
     
-    func configureRefreshControl()
-    {
+    func configureRefreshControl() {
         let refreshControl = UIRefreshControl.init()
         tableView.addSubview(refreshControl)
         refreshControl.tintColor = .orange
@@ -51,19 +46,16 @@ private extension ContactsViewController
         self.refreshControl = refreshControl
     }
     
-    func configureTableView()
-    {
+    func configureTableView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.tableHeaderView = UIView(frame: view.bounds)
     }
     
-    @objc func refreshContent()
-    {
+    @objc func refreshContent() {
         output.viewDidStartRefresh()
     }
     
-    func configureSearchBar()
-    {
+    func configureSearchBar() {
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         search.searchBar.placeholder = "Search by name or phone"
@@ -73,38 +65,31 @@ private extension ContactsViewController
 }
 
 
-extension ContactsViewController: UISearchResultsUpdating
-{
-    func updateSearchResults(for searchController: UISearchController)
-    {
+extension ContactsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
         output.viewDidChangeFilter(value: searchController.searchBar.text)
     }
 }
 
 
-extension ContactsViewController
-{
-    override func numberOfSections(in tableView: UITableView) -> Int
-    {
+extension ContactsViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int
-    {
+                            numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
     override func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let detailedCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
         
         return detailedCell
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
-    {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         guard let detailedCell = cell as? ContactsTVCell else {return}
         
@@ -119,21 +104,17 @@ extension ContactsViewController
 }
 
 
-extension ContactsViewController
-{
+extension ContactsViewController {
     override func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+                            heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = items[indexPath.row]
         
         output.viewDidPress(on: selectedItem)
@@ -143,15 +124,12 @@ extension ContactsViewController
 }
 
 
-extension ContactsViewController: ContactsViewInput
-{
-    func beginUpdates()
-    {
+extension ContactsViewController: ContactsViewInput {
+    func beginUpdates() {
         tableView.beginUpdates()
     }
     
-    func endUpdates(with items: [ContactItem])
-    {
+    func endUpdates(with items: [ContactItem]) {
         refreshControl?.endRefreshing()
         
         self.items = items
@@ -159,26 +137,22 @@ extension ContactsViewController: ContactsViewInput
         tableView.endUpdates()
     }
     
-    func deleteRows(at indexes: [Int])
-    {
+    func deleteRows(at indexes: [Int]) {
         tableView.deleteRows(at: indexes.map { IndexPath(row: $0, section: 0) },
-                                  with: .automatic)
+                             with: .automatic)
     }
     
-    func insertRows(at indexes: [Int])
-    {
+    func insertRows(at indexes: [Int]) {
         tableView.insertRows(at: indexes.map { IndexPath(row: $0, section: 0) },
                              with: .automatic)
     }
     
-    func reloadRows(at indexes: [Int])
-    {
+    func reloadRows(at indexes: [Int]) {
         tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
                              with: .automatic)
     }
     
-    func configure(with items: [ContactItem])
-    {
+    func configure(with items: [ContactItem]) {
         self.items = items
         
         refreshControl?.endRefreshing()
@@ -188,8 +162,7 @@ extension ContactsViewController: ContactsViewInput
         self.navigationController?.view.hideToastActivity()
     }
     
-    func showToast(_ text: String)
-    {
+    func showToast(_ text: String) {
         refreshControl?.endRefreshing()
         
         self.navigationController?.view.hideAllToasts()

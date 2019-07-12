@@ -9,26 +9,22 @@
 import UIKit
 
 
-protocol RootWindowInput
-{
+protocol RootWindowInput {
     func show(viewController: UIViewController)
     
     func push(viewController: UIViewController)
 }
 
 
-class RootWindowService
-{
+class RootWindowService {
     var window = UIWindow.init(frame: UIScreen.main.bounds)
     
     var rootNavigationController: UINavigationController? = nil
 }
 
 
-extension RootWindowService: RootWindowInput
-{
-    func push(viewController: UIViewController)
-    {
+extension RootWindowService: RootWindowInput {
+    func push(viewController: UIViewController) {
         if let rootNC = rootNavigationController
         {
             rootNC.pushViewController(viewController, animated: true)
@@ -43,8 +39,7 @@ extension RootWindowService: RootWindowInput
         }
     }
     
-    func show(viewController: UIViewController)
-    {
+    func show(viewController: UIViewController) {
         window.rootViewController = viewController
         window.makeKeyAndVisible()
     }

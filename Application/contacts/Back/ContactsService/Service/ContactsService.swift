@@ -10,8 +10,7 @@ import Foundation
 import RealmSwift
 
 
-protocol ContactsServiceInput
-{
+protocol ContactsServiceInput {
     func readContacts(with filter: String?) -> Results<Contact>
     
     func readContact(with identifier: String) -> Contact?
@@ -20,24 +19,20 @@ protocol ContactsServiceInput
 }
 
 
-class ContactsService
-{
+class ContactsService {
     private var readRealm: Realm!
     
     let databaseService: DataBaseService
     
-    init(databaseService: DataBaseService)
-    {
+    init(databaseService: DataBaseService){
         readRealm = databaseService.readRealm
         
         self.databaseService = databaseService
     }
 }
 
-extension ContactsService: ContactsServiceInput
-{
-    func readContacts(with filter: String?) -> Results<Contact>
-    {
+extension ContactsService: ContactsServiceInput {
+    func readContacts(with filter: String?) -> Results<Contact>{
         if let filterString = filter, !filterString.isEmpty
         {
             return readRealm.objects(Contact.self)
@@ -51,42 +46,40 @@ extension ContactsService: ContactsServiceInput
         }
     }
     
-    func readContact(with identifier: String) -> Contact?
-    {
-       return readRealm.object(ofType: Contact.self, forPrimaryKey: identifier)
+    func readContact(with identifier: String) -> Contact?{
+        return readRealm.object(ofType: Contact.self, forPrimaryKey: identifier)
     }
     
-    func writeContacts(from data: Data)
-    {
+    func writeContacts(from data: Data){
         DispatchQueue.global().async {
             autoreleasepool{
                 [weak self] in
-                    
-                    guard let self = self else {return}
-                    
-                    let writeRealm = self.databaseService.newRealm
-                    do
+                
+                guard let self = self else {return}
+                
+                let writeRealm = self.databaseService.newRealm
+                do
+                {
+                    try writeRealm.write
                     {
-                        try writeRealm.write
+                        do
                         {
-                            do
-                            {
-                                let decoder = JSONDecoder()
-                                decoder.dateDecodingStrategy = .iso8601
-                                let contacts = try decoder.decode([Contact].self, from: data)
-                                writeRealm.add(contacts, update: true)
-                            }
-                            catch
-                            {
-                                print(error)
-                            }
+                            let decoder = JSONDecoder()
+                            decoder.dateDecodingStrategy = .iso8601
+                            let contacts = try decoder.decode([Contact].self, from: data)
+                            writeRealm.add(contacts, update: true)
+                        }
+                        catch
+                        {
+                            print(error)
                         }
                     }
-                    catch
-                    {
-                        print(error)
-                    }
+                }
+                catch
+                {
+                    print(error)
                 }
             }
+        }
     }
 }

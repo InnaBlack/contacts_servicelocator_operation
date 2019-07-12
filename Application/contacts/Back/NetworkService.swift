@@ -8,10 +8,8 @@
 
 import Foundation
 
-class NetworkService
-{    
-    func loadData(from url: URL, completion: @escaping (_ data: Data?,_ error: Error?) -> Void)
-    {
+class NetworkService {    
+    func loadData(from url: URL, completion: @escaping (_ data: Data?,_ error: Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: url)
             { (data, response, error) in
                 
