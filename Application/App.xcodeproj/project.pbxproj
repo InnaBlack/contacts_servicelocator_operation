@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -115,6 +115,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		62ABAC2822D8DEF400945401 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B23D3F76220AD62400043985 /* TableData.swift */,
+				B23D3F79220AEEF400043985 /* SortDesc.swift */,
+				62BDC74522182BCA0058C7DE /* NSErrorExtensions.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		B23AD43B2201822F007EA3FE /* Back */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,17 +225,6 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		B23D3F78220AD62900043985 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				B23D3F76220AD62400043985 /* TableData.swift */,
-				B23D3F79220AEEF400043985 /* SortDesc.swift */,
-				62BDC74522182BCA0058C7DE /* NSErrorExtensions.swift */,
-			);
-			name = Common;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		B23D3F87221450B000043985 /* ContactInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,7 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F7CBF022003B0F00D6C868 /* AppDelegate.swift */,
-				B23D3F78220AD62900043985 /* Common */,
+				62ABAC2822D8DEF400945401 /* Common */,
 				B23AD43B2201822F007EA3FE /* Back */,
 				B23AD43C22018248007EA3FE /* Front */,
 				B23AD43D22018259007EA3FE /* Support */,
@@ -346,6 +345,7 @@
 				TargetAttributes = {
 					B2F7CBEC22003B0F00D6C868 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -409,24 +409,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-contacts/Pods-contacts-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-contacts/Pods-contacts-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-contacts/Pods-contacts-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-contacts/Pods-contacts-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-contacts/Pods-contacts-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -614,7 +605,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = PF.contacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -633,7 +624,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = PF.contacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
