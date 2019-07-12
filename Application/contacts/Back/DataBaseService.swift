@@ -13,12 +13,12 @@ class DataBaseService {
     var readRealm: Realm!
     var newRealm: Realm {
         let configuration = self.makeContactConfiguration(readOnly: false)
-        return try! Realm.init(configuration: configuration)
+        return try! Realm(configuration: configuration)
     }
     
     init() {
         let configuration = self.makeContactConfiguration(readOnly: false)
-        self.readRealm = try! Realm.init(configuration: configuration)
+        self.readRealm = try! Realm(configuration: configuration)
     }
 }
 

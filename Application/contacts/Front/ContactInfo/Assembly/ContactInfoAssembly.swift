@@ -16,7 +16,7 @@ class ContactInfoAssembly {
             else {return ContactInfoViewController()}
         
         let interactor =
-            ContactInfoInteractor.init(contactsService: locator.contactsService)
+            ContactInfoInteractor(contactsService: locator.contactsService)
         
         let presenter = ContactInfoPresenter()
         let router = ContactInfoRouter()

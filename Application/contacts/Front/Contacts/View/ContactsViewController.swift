@@ -39,7 +39,7 @@ private extension ContactsViewController {
     }
     
     func configureRefreshControl() {
-        let refreshControl = UIRefreshControl.init()
+        let refreshControl = UIRefreshControl()
         tableView.addSubview(refreshControl)
         refreshControl.tintColor = .orange
         refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)

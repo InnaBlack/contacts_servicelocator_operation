@@ -51,7 +51,7 @@ extension ContactInfoViewController: ContactInfoViewInput {
         biographyLabel.text = item.biography
         
         callButton.setTitle(item.phoneNumber, for: .normal)
-        callButton.setImage(UIImage.init(named: "phone"), for: .normal)
+        callButton.setImage(UIImage(named: "phone"), for: .normal)
         
         stackView.layoutSubviews()
     }

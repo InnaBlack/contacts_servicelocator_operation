@@ -59,7 +59,7 @@ class LoadService {
 private extension LoadService {
     func makeRequestUrl(for resource: String) -> URL? {
         let requestPath = serverPath + resource + "?" + query
-        return URL.init(string: requestPath)
+        return URL(string: requestPath)
     }
 }
 
@@ -74,7 +74,7 @@ extension LoadService: LoadServiceInput {
         }
         else if let syncCompletion = completion
         {
-            let error = NSError.init(code: 200, message: "Already updated")
+            let error = NSError(code: 200, message: "Already updated")
             
             syncCompletion(error)
         }
@@ -85,7 +85,7 @@ extension LoadService: LoadServiceInput {
         var date = Date()
         LogService.log(.loadService, level: .time, message: "Start \(date)")
         
-        let syncQueue = OperationQueue.init()
+        let syncQueue = OperationQueue()
         
         var waitResult: DispatchTimeoutResult = .timedOut
         
@@ -139,7 +139,7 @@ extension LoadService: LoadServiceInput {
                     }
                     else
                     {
-                        let error = NSError.init(code: 502, message: "Connection error")
+                        let error = NSError(code: 502, message: "Connection error")
                         
                         syncErrors.append(error)
                     }

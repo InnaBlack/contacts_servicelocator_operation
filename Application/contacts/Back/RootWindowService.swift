@@ -17,7 +17,7 @@ protocol RootWindowInput {
 
 
 class RootWindowService {
-    var window = UIWindow.init(frame: UIScreen.main.bounds)
+    var window = UIWindow(frame: UIScreen.main.bounds)
     
     var rootNavigationController: UINavigationController? = nil
 }
@@ -32,7 +32,7 @@ extension RootWindowService: RootWindowInput {
         }
         else
         {
-            let rootNC = UINavigationController.init(rootViewController: viewController)
+            let rootNC = UINavigationController(rootViewController: viewController)
             rootNC.navigationBar.prefersLargeTitles = true
             rootNavigationController = rootNC
             show(viewController: rootNC)

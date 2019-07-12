@@ -14,8 +14,8 @@ class ContactsAssembly {
         let locator = LocatorService.current
         
         let interactor =
-            ContactsInteractor.init(contactsService: locator.contactsService,
-                                    loadService: locator.loadService)
+            ContactsInteractor(contactsService: locator.contactsService,
+                               loadService: locator.loadService)
         
         let presenter = ContactsPresenter()
         let router = ContactsRouter()

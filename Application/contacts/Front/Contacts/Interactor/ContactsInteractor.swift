@@ -55,12 +55,12 @@ extension ContactsInteractor: ContactsInteractorInput {
                         switch changes
                         {
                         case .initial:
-                            let items = Array.init(resultContacts)
+                            let items = Array(resultContacts)
                             self.output.interactorDidLoad(items: items)
                             
                         case .update(_, _, _, _):
                             resultContacts = self.contactsService.readContacts(with: self.filterString)
-                            let items = Array.init(resultContacts)
+                            let items = Array(resultContacts)
                             self.output.interactorDidLoad(items: items)
                             
                         case .error(let error):

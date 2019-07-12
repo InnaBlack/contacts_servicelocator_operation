@@ -45,7 +45,7 @@ private extension LocatorService {
     }
     
     func makeContactService() -> ContactsServiceInput {
-        let service = ContactsService.init(databaseService: self.dataBaseService)
+        let service = ContactsService(databaseService: self.dataBaseService)
         LogService.log(.contactsService, level: .info, message: "did create")
         
         return service
@@ -53,9 +53,9 @@ private extension LocatorService {
     
     func makeLoadService() -> LoadServiceInput {
         
-        let service = LoadService.init(networkService: self.networkService,
-                                       databaseService: self.dataBaseService,
-                                       contactsService: self.contactsService)
+        let service = LoadService(networkService: self.networkService,
+                                  databaseService: self.dataBaseService,
+                                  contactsService: self.contactsService)
         LogService.log(.loadService, level: .info, message: "did create")
         
         return service
@@ -69,6 +69,6 @@ private extension LocatorService {
     }
     
     func makeContactStoryboard() -> UIStoryboard {
-        return UIStoryboard.init(name: "ContactsSB", bundle: Bundle.main)
+        return UIStoryboard(name: "ContactsSB", bundle: Bundle.main)
     }
 }

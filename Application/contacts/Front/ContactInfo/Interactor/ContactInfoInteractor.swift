@@ -56,6 +56,6 @@ extension ContactInfoInteractor: ContactInfoInteractorInput {
         
         let contactPhoneNumbers = contactPhone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         let path = "tel://+\(contactPhoneNumbers)"
-        return URL.init(string: path)
+        return URL(string: path)
     }
 }
