@@ -67,7 +67,7 @@ extension ContactsService: ContactsServiceInput {
                             let decoder = JSONDecoder()
                             decoder.dateDecodingStrategy = .iso8601
                             let contacts = try decoder.decode([Contact].self, from: data)
-                            writeRealm.add(contacts, update: true)
+                            writeRealm.add(contacts, update: .all)
                         }
                         catch
                         {
